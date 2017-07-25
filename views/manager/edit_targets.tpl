@@ -80,22 +80,20 @@
                                                 <button type="button" data-toggle="modal" data-target="#addPictureDialogModal" class="btn btn btn-default" style="float:none;"><i class="fa fa-plus"></i>添加照片</button>
                                                 <div class="alldom" style="margin-left: -9px;">
                                                     <ul id="divall-pic" style="padding:0">
-                                                        {{range $index,$item := .Target.Pictures}}
-                                                        <li id="pic{{$item.Id}}" style="height: 128px;">
-                                                            <div v-on:mouseenter="hover({{$item.Id}})" v-on:mouseleave="hoverout({{$item.Id}})">
-                                                                <div class="delete_bar" id="{{$item.Id}}">
+                                                        <li :id="'pic' + item.id" style="height: 128px;" v-for="item in pictures">
+                                                            <div v-on:mouseenter="hover(item.id)" v-on:mouseleave="hoverout(item.id)">
+                                                                <div class="delete_bar" :id="item.id">
                                                                     <div style="padding:5px;">
-                                                                        <span class="file_del fa fa-times" title="删除" @click="delPicture({{$item.Id}})"></span>
+                                                                        <span class="file_del fa fa-times" title="删除" @click="delPicture(item.id)"></span>
                                                                     </div>
                                                                 </div>
                                                                 <a href="javascript:;">
-                                                                    <img src="{{$item.Url}}" alt="">
+                                                                    <img :src="item.url" alt="">
                                                                 </a>
-                                                                <p class="file_failure" style="display: block;"></p>
-                                                                <!--<p class="file_success" v-hide="{{$item.Url}}" style="display: block;"></p>-->
+                                                                <p class="file_failure" style="display: none;"></p>
+                                                                <p class="file_success" style="display: none;"></p>
                                                             </div>
                                                         </li>
-                                                        {{end}}
                                                     </ul>
                                                 </div>
                                             </div>
@@ -167,25 +165,28 @@
 
     <!-- add Picture Modal-->
     <div class="modal fade" id="addPictureDialogModal" tabindex="-1" role="dialog" aria-labelledby="addPictureDialogModalLabel">
-        <div class="modal-dialog" role="document" style="width: 700px">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">添加照片</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <div class="col-sm-12">
-                            <input type="hidden" name="photo" id="photo">
-                            <div id="demo" class="demo"></div>
+        <div class="modal-dialog" role="document">
+            <form method="post" autocomplete="off" action="javascript:void(0);" id="addPictureDialogForm" class="form-horizontal">
+                <input type="hidden" name="newPicture" id="newPicture" value="">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">添加照片</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="hidden" name="photo" id="photo">
+                                <div id="demo" class="demo"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-primary" id="addPictureModal" data-loading-text="保存中...">添加</button>
-                </div>
-            </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" id="addPictureModal" data-loading-text="保存中...">添加</button>
+                    </div>
+                </div>     
+            </form>
         </div>
     </div>
     <!--END Modal-->
@@ -237,28 +238,45 @@
                 }
             }
         });
-        
+
         init();
         function init () {
             /*初始化input的value*/
-            $("#pictures").val(JSON.stringify({{.Target.Pictures}}));
+            $("#pictures").val(JSON.stringify(app.pictures));
 
-            /*设置边框
-            for (var i=0;i<={{.Target.Pictures}}.length;i++) {
-                if ({{.Target.Pictures}}[i].) {
-                    $("#pic" + i).find("img").css("border","1px solid red");
-                }else {
-                    $("#pic" + i).find("img").css("border","1px solid blue");
+            /*设置边框*/
+            setBorder();
+            function setBorder() {
+                for (var i=0;i<app.pictures.length;i++) {
+                    //console.log(app.pictures[i]);
+                    var that = "#pic" + app.pictures[i].id ;
+                    if (app.pictures[i].feature == "") {
+                        $(that).css("border","1px solid rgb(212, 0, 0)");
+                        $(that).find(".file_failure").show();
+                    }else {
+                        $(that).css("border","1px solid rgb(16, 148, 250)");
+                        $(that).find(".file_success").show();
+                    }
                 }
-            }*/
-
+            }
+            
             /*设置localstorage记录进入的目标库*/
             localStorage.setItem("LibraryId",{{.Target.LibraryId}});
             localStorage.setItem("LibraryName",{{.Target.LibraryName}});
 
             /*添加相片*/
             $("#addPictureModal").click(function(){
-                console.log(123);
+                $('#addPictureDialogModal').modal("hide");
+                var $then = $("#addPictureDialogForm");
+                var newPicture = $.trim($then.find("input[name='newPicture']").val());
+                if (newPicture != "") {
+                    app.pictures = app.pictures.concat(JSON.parse(newPicture));
+                    for (var i=0;i< app.pictures.length;i++) {
+                        app.pictures[i].id = i;
+                    }
+                }
+                $("#pictures").val(JSON.stringify(app.pictures));
+                setBorder();
             });
         }
 
@@ -303,31 +321,18 @@
             del              :   true,                    // 是否可以删除文件
             finishDel        :   false,                   // 是否在上传文件完成后删除预览
             /* 外部获得的回调接口 */
-            onSelect: function(files, allFiles){                    // 选择文件的回调方法
-                /*console.info("当前选择了以下文件：");
-                console.info(files);
-                console.info("之前没上传的文件：");*/
-                //console.log(files);
-                console.log(allFiles);
+            onSelect: function(files, allFiles){                        // 选择文件的回调方法
             },
             onDelete: function(file, surplusFiles){                     // 删除一个文件的回调方法
-                /*console.info("当前删除了此文件：");
-                console.info(file);
-                console.info("当前剩余的文件：");*/
-                console.info(surplusFiles);
-                $("#photo").val(JSON.stringify(surplusFiles));
+                $("#newPicture").val(JSON.stringify(surplusFiles));
             },
-            onSuccess: function(file){                    // 文件上传成功的回调方法
-                console.info("此文件上传成功：");
-                console.info(file);
+            onSuccess: function(file,rep,files){                                  // 文件上传成功的回调方法
+                $("#newPicture").val(JSON.stringify(files));
             },
-            onFailure: function(file){                    // 文件上传失败的回调方法
-                console.info("此文件上传失败：");
-                console.info(file);
+            onFailure: function(file,rep,files){                                  // 文件上传失败的回调方法
+                toastr['error'](rep);
             },
-            onComplete: function(responseInfo){           // 上传完成的回调方法
-                console.info("文件上传完成");
-                console.info(responseInfo);
+            onComplete: function(responseInfo){                         // 上传完成的回调方法
             }
         });
         $(".upload_btn").hide();

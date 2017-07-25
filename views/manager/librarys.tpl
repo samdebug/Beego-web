@@ -474,7 +474,6 @@
             $('#libTabs li:eq(1) a').tab('show');
         }
 
-            
         $("#demo").zyUpload({
             width            :   "100%",                 // 宽度
             height           :   "400px",                 // 宽度
@@ -487,30 +486,17 @@
             finishDel        :   false,                   // 是否在上传文件完成后删除预览
             /* 外部获得的回调接口 */
             onSelect: function(files, allFiles){                    // 选择文件的回调方法
-                /*console.info("当前选择了以下文件：");
-                console.info(files);
-                console.info("之前没上传的文件：");*/
-                //console.log(files);
-                console.log(allFiles);
             },
-            onDelete: function(file, surplusFiles){                     // 删除一个文件的回调方法
-                /*console.info("当前删除了此文件：");
-                console.info(file);
-                console.info("当前剩余的文件：");*/
-                console.info(surplusFiles);
+            onDelete: function(file, surplusFiles){                 // 删除一个文件的回调方法
                 $("#photo").val(JSON.stringify(surplusFiles));
             },
-            onSuccess: function(file){                    // 文件上传成功的回调方法
-                console.info("此文件上传成功：");
-                console.info(file);
+            onSuccess: function(file,rep,files){                    // 文件上传成功的回调方法
+                $("#photo").val(JSON.stringify(files));
             },
-            onFailure: function(file){                    // 文件上传失败的回调方法
-                console.info("此文件上传失败：");
-                console.info(file);
+            onFailure: function(file,rep,files){                    // 文件上传失败的回调方法
+                toastr['error'](rep);
             },
-            onComplete: function(responseInfo){           // 上传完成的回调方法
-                console.info("文件上传完成");
-                console.info(responseInfo);
+            onComplete: function(responseInfo){                     // 上传完成的回调方法
             }
         });
 

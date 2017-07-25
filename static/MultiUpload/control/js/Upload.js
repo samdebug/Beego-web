@@ -374,8 +374,8 @@
 						$("#uploadList_" + file.index).fadeOut();
 						// 重新设置统计栏信息
 						self.funSetStatusInfo(files);
-						console.info("剩下的文件");
-						console.info(files);
+						//console.info("剩下的文件");
+						//console.info(files);
 					},
 					onProgress: function(file, loaded, total) {
 						var eleProgress = $("#uploadProgress_" + file.index), percent = (loaded / total * 100).toFixed(2) + '%';
@@ -384,11 +384,18 @@
 						}
 						eleProgress.css("width",percent);
 					},
-					onSuccess: function(file, response) {
+					onSuccess: function(file, response,files) {
 						$("#uploadProgress_" + file.index).hide();
-						$("#uploadSuccess_" + file.index).show();
-						$("#uploadImage_" + file.index).css("opacity","1");
-						$("#uploadList_" + file.index).css("border","1px solid #1094fa");
+						if (!response) {
+							//$("#uploadImage_" + file.index).css("opacity","1");
+							$("#uploadSuccess_" + file.index).show();
+							$("#uploadList_" + file.index).css("border","1px solid #1094fa");
+						} else {
+							$("#uploadFailure_" + file.index).show();
+							$("#uploadList_" + file.index).css("border","1px solid rgb(212, 0, 0)");
+						}
+						
+						
 						//$("#uploadInf").append("<p>上传成功，文件地址是：" + response + "</p>");
 						// 根据配置参数确定隐不隐藏上传成功的文件
 						if(para.finishDel){
@@ -397,13 +404,15 @@
 							// 重新设置统计栏信息
 							self.funSetStatusInfo(ZYFILE.funReturnNeedFiles());
 						}
+						para.onSuccess(file, response,files);
 					},
-					onFailure: function(file) {
+					onFailure: function(file, response,files) {
 						$("#uploadProgress_" + file.index).hide();
 						$("#uploadFailure_" + file.index).show();
 						$("#uploadList_" + file.index).css("border","1px solid rgb(212, 0, 0)");
 						//$("#uploadInf").append("<p>文件" + file.name + "上传失败！</p>");	
 						//$("#uploadImage_" + file.index).css("opacity", 0.2);
+						para.onSuccess(file, response,files);
 					},
 					onComplete: function(response){
 						console.info(response);

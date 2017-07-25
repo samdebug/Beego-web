@@ -152,16 +152,21 @@
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
     <a class="active item">主页</a>
+    <a href="{{urlfor "ManagerController.Index"}}" class="item">实时监控</a>
+    <a href="{{urlfor "LibController.Librarys" }}" class="item">目标库管理</a>
+    <a href="{{urlfor "VideosController.Videos" }}" class="item">视频源管理</a>
+    <a href="{{urlfor "ManagerController.Books" }}" class="item">布控任务</a>
+    <a href="{{urlfor "CompareController.One2ManySearch" }}" class="item">人脸检索</a>
     <!--<a class="item">产品中心</a>
-    <a class="item">解决方案</a>-->
-    <a class="item">关于泽云</a>
+    <a class="item">解决方案</a>
+    <a class="item">关于泽云</a>-->
     <div class="right menu">
-      <div class="item">
-        <a href="{{urlfor "AccountController.Login"}}" class="ui button">登录</a>
-      </div>
       <!--<div class="item">
-        <a href="{{urlfor "AccountController.Register"}}" class="ui primary button">注册</a>
+        <a href="{{urlfor "AccountController.Login"}}" class="ui button">登录</a>
       </div>-->
+      <div class="item">
+        <a href="{{urlfor "AccountController.Register"}}" class="ui primary button">注册 | 加入我们</a>
+      </div>
     </div>
   </div>
 </div>
@@ -169,11 +174,16 @@
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
   <a class="active item">主页</a>
+  <a href="{{urlfor "ManagerController.Index"}}" class="item">实时监控</a>
+  <a href="{{urlfor "LibController.Librarys" }}" class="item">目标库管理</a>
+  <a href="{{urlfor "VideosController.Videos" }}" class="item">视频源管理</a>
+  <a href="{{urlfor "ManagerController.Books" }}" class="item">布控任务</a>
+  <a href="{{urlfor "CompareController.One2ManySearch" }}" class="item">人脸检索</a>
   <!--<a class="item">产品中心</a>
-  <a class="item">解决方案</a>-->
-  <a class="item">关于泽云</a>
-  <a href="{{urlfor "AccountController.Login"}}" class="item">登录</a>
-  <!--<a href="{{urlfor "AccountController.Register"}}" class="item">注册</a>-->
+  <a class="item">解决方案</a>
+  <a class="item">关于泽云</a>-->
+  <!--<a href="{{urlfor "AccountController.Login"}}" class="item">登录</a>-->
+  <a href="{{urlfor "AccountController.Register"}}" class="item">注册 | 加入我们</a>
 </div>
 
 
@@ -187,12 +197,17 @@
           <i class="sidebar icon"></i>
         </a>
         <a class="active item">主页</a>
+        <a href="{{urlfor "ManagerController.Index"}}" class="item">实时监控</a>
+        <a href="{{urlfor "LibController.Librarys" }}" class="item">目标库管理</a>
+        <a href="{{urlfor "VideosController.Videos" }}" class="item">视频源管理</a>
+        <a href="{{urlfor "ManagerController.Books" }}" class="item">布控任务</a>
+        <a href="{{urlfor "CompareController.One2ManySearch" }}" class="item">人脸检索</a>
         <!--<a class="item">产品中心</a>
-        <a class="item">解决方案</a>-->
-        <a class="item">关于泽云</a>
+        <a class="item">解决方案</a>
+        <a class="item">关于泽云</a>-->
         <div class="right item">
-          <a href="{{urlfor "AccountController.Login"}}" class="ui inverted button">登录</a>
-          <!--<a href="{{urlfor "AccountController.Register"}}" class="ui inverted button">注册</a>-->
+          <!--<a href="{{urlfor "AccountController.Login"}}" class="ui inverted button">登录</a>-->
+          <a href="{{urlfor "AccountController.Register"}}" class="ui inverted button">注册 | 加入我们</a>
         </div>
       </div>
     </div>

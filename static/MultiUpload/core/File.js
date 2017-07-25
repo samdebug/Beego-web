@@ -165,15 +165,6 @@ var ZYFILE = {
 
 			var formdata = new FormData();
 			formdata.append("file", file);	
-			formdata.append("name", $("#name").val());	
-			formdata.append("identity", $("#identity").val());	  		
-			formdata.append("sex", $("input[name='sex']:checked").val());	
-			formdata.append("level", $("input[name='level']:checked").val());	
-			formdata.append("age", $("#age").val());	
-			formdata.append("nation", $("#nation").val());	
-			formdata.append("host", $("#host").val());	
-			formdata.append("description", $("#description").val());
-
 			var xhr = new XMLHttpRequest();
 			// 绑定上传事件
 			// 进度
@@ -186,21 +177,22 @@ var ZYFILE = {
 	    		// 从文件中删除上传成功的文件  false是不执行onDelete回调方法
 	    		console.log(JSON.parse(xhr.responseText));
 	    		var respon = JSON.parse(xhr.responseText);
+	    		file.uid = respon.data.name;
+			    file.url = respon.data.url;
+			    file.feature = respon.data.feature;
 	    		if (respon.errcode != 0){
-		    		self.onFailure(file, xhr.responseText);
 		    		file.verified = "fail";
+		    		layer.msg("无法识别人脸");
 		    	}else{
-		    		self.onSuccess(file, xhr.responseText);
 		    		file.verified = "success";
 		    	}
-		    	file.uid = respon.data.name;
-		    	file.url = respon.data.url;
-		    	file.feature = respon.data.feature;
+		    	self.onSuccess(file, respon.errcode,self.uploadFile);
+		    	
 		    	//self.funDeleteFile(file.index, false);
 		    	// 回调到外部
 		    	//self.onSuccess(file, xhr.responseText);
 		    	
-                $("#photo").val(JSON.stringify(self.uploadFile));
+                //$("#photo").val(JSON.stringify(self.uploadFile));
 		    	if(self.uploadFile.length==0){
 		    		// 回调全部完成方法
 		    		self.onComplete("全部完成");
