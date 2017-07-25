@@ -135,4 +135,4 @@ go build -ldflags "-H=windowsgui"
 
 # 关于作者
 
-借鉴大牛的手，创造属于自己的天空 。
+学习使我快乐 。
