@@ -1,0 +1,152 @@
+.backgroundTop {
+  background-image: url(../img/account-setting-background-top.png)!important;
+}
+.tab {width: 105px!important;}
+
+#backgroundPanel {
+  width: 1780px;
+  min-height: 600px;
+  background-color: rgba(27, 53, 56, 0.9);
+  margin-left: 15px;
+}
+
+#account-panel-header {
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	background-color: rgba(123, 245, 254, 0.1);
+	text-align: center;
+  position: relative;
+}
+
+#account-panel-header-span {
+	font-size: 16px;
+	color: #7bf5fe;
+}
+
+#account-content {
+	position: absolute;
+	margin: auto;
+	top: 240px;
+	left: 0;
+	right: 0;
+	width: 480px;
+}
+
+.content-li {
+	float: left;
+	margin-bottom: 40px;
+}
+
+.content-div {
+	display: inline-block;
+	height: 34px;
+	line-height: 34px;
+}
+
+.content-label {
+	color: #7bf5fe;
+	display: block;
+	width: 80px;
+	text-align: right;
+}
+
+.content-button {
+	background: #31676D;
+	box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+	border-radius: 2px;
+	padding: 0 20px 0 20px;
+	cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.content-button-span {color: #71F5FF;}
+
+.content-username, .content-userrealname {
+	width: 200px;
+	margin: 0 10px;
+	color: rgba(123, 245, 254, 0.5);
+}
+
+.content-label {width: 80px;}
+
+#content-realname-input {
+	height: 34px;
+	line-height: 34px;
+}
+
+.confirm {margin-right: 10px;}
+.change-name {display: inline-block;}
+.content-button-pair {display: none;}
+
+#change-password {
+  width: 502px;
+  height: 352px;
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 25002;
+}
+
+.change-password-li {
+  display: list-item;
+  float: none;
+  clear: both;
+  margin-top: 20px;
+}
+
+.change-password-div {display: inline-block;}
+
+.change-password-label {
+  height: 34px;
+  line-height: 34px;
+  margin-right: 15px;
+  width: 70px;
+  text-align: right;
+}
+
+.change-password-span {
+  font-size: 16px;
+  color: #7bf5fe;
+  cursor: default;
+}
+
+.change-password-input {
+  height: 34px;
+  line-height: 34px;
+  width: 300px !important;
+}
+
+.change-password-hints {
+  margin-top: 0;
+  margin-left: 95px;
+}
+.change-password-hint-span {
+  opacity: 0.4;
+  font-size: 12px;
+  color: #7BF5FE;
+  cursor: default;
+}
+.change-password-warning-span {
+  font-size: 12px;
+  color: #F8324A;
+}
+
+#popup-body {padding: 40px 55px;}
+
+#breadcrumb {
+  position: absolute;
+  left: 40px;
+  top: 0px;
+  cursor: default;
+}
+
+.breadcrumb-img {margin: 0 5px;}
+
+.breadcrumb-span {
+  font-size: 16px;
+  color: rgba(123, 245, 254, 0.5);
+}

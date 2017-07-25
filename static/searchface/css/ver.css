@@ -1,0 +1,178 @@
+#backgroundPanel {
+  width: 1780px;
+  min-height: 600px;
+  background-color: rgba(27, 53, 56, 0.9);
+  margin-left: 15px;
+  padding-top: 8px;
+  position: relative;
+  padding: 105px 0;
+}
+.backgroundTop {
+  width: 1841px;
+  height: 137px;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-image: url("../img/ver-background-top.png")!important;
+  position: relative;
+}
+.compare-panel {
+  height: 550px;
+  background: rgba(113, 245, 255, 0.05);
+  border: 1px solid rgba(113, 245, 255, 0.05);
+  border-radius: 2px;
+}
+
+.compare-Box {
+  width: 850px;
+  height: 340px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.compare-box-div {
+  list-style-type: none;
+  display: list-item;
+  width: 276px;
+  height: 337px;
+  float: left;
+  border: 2px dashed rgba(123, 245, 254, 0.5);
+}
+
+.similarity {
+  width: 170px!important;
+  border: none!important;
+  margin: 0 62px;
+  text-align: center;
+}
+
+.compare-box-input {
+  display: none;
+}
+
+/**************
+  Button Style of Various State
+**************/
+
+.invalid {
+  background: #22484C;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+  border-radius: 2px;
+}
+
+.invalid span {
+  color: rgba(113, 245, 255, 0.4) !important;
+}
+
+.button-hover {
+  background: #7BF5FE;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+  border-radius: 2px;
+}
+
+.button-hover span {
+  font-size: 16px;
+  color: #000000;
+}
+
+.clickable {
+  background: #31676D;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+  border-radius: 2px;
+}
+
+.clickable span {
+  color: #71F5FF;
+}
+
+/****End of That****/
+
+.submitButton {
+  width: 140px;
+  height: 34px;
+  line-height: 34px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+.similarity-div {
+  width: 170px;
+  height: 170px;
+  line-height: 170px;
+  margin-top: 93px;
+  background-image: url("../img/ver-perc-background.png");
+}
+
+.similarity-span {
+  color: #7bf5fe;
+  font-size: 34px;
+}
+
+.picture-area {
+  position: relative;
+  text-align: center;
+  z-index: 10001;
+  display: table-cell;
+  vertical-align: middle;
+}
+.compare-box-img {
+  z-index: 9999;
+}
+
+.compare-box-before-upload {
+  z-index: -1;
+  width: 66px;
+  height: 66px;
+  position: absolute;
+  left: 105px;
+  top: 110px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.compare-box-span {
+  z-index: -1;
+  position: absolute;
+  left: 90px;
+  top: 205px;
+  color: #7bf5fe;
+  opacity: 0.5;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+#state {
+  color: #7bf5fe;
+  font-size: 30px;
+  position: absolute;
+  z-index: 24999;
+  margin: auto;
+  top: 30px;
+  left: 0;
+  right: 0;
+  width: 1000px;
+  text-align: center;
+}

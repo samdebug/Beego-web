@@ -1,0 +1,93 @@
+.pagination {
+	position: absolute;
+	right: 60px;
+	bottom: 62px;
+	cursor: default;
+}
+
+.pagination > ul > li {
+	float: left;
+}
+
+.lastPage, .nextPage, .pages {
+	height: 24px;
+	background-color: rgba(123,245,254,0.2);
+	border: solid 1px rgba(123, 245, 254, 0.5);
+	margin: 0 5px;
+	cursor: pointer;
+}
+
+.lastPage, .nextPage {
+	width: 60px;
+}
+
+.pagination div {
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+}
+
+.lastPage-div, .nextPage-div {
+	/*height: 24px;*/
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+	/*display: table-cell;
+	vertical-align: middle;*/
+}
+
+.pages-div {
+	width: 20px;
+	text-align: center;
+	cursor: pointer;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.pagination span {
+	color: rgba(123,245,254,0.5);
+	font-size: 12px;
+}
+
+.pageActived, .pageCurrent {
+	border: 1px solid rgba(123, 245, 254, 1);
+}
+
+.pageActived span, .pageCurrent span {
+	color: rgba(123, 245, 254, 1);
+}
+
+#pageInput {
+	width: 20px;
+	height: 24px;
+	outline: none;
+	background-color: rgba(123,245,254,0.2);
+	border: solid 1px rgba(123, 245, 254, 1);
+	margin: 0 10px;
+	padding: 0px;
+	color: rgba(123, 245, 254, 1);
+}
+
+.paginationButton {
+	width: 38px;
+	height: 24px;
+	margin-left: 15px;
+	background-color: rgba(123,245,254,0.2);
+	border: solid 1px #264a4d;
+	padding: 0;
+	outline: none;
+}
+
+.paginationButton-span {
+	font-size: 12px;
+	color: rgba(123,245,254,0.5);
+}
+
+.total {
+	margin: 0 12px 0 7px;
+}
+
+.toPage-div, .total-div {
+	display: table-cell;
+	vertical-align: middle;
+}

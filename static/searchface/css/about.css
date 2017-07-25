@@ -1,0 +1,9 @@
+
+#main {padding-top: 8px;}
+
+#backgroundPanel {
+  width: 1780px;
+  height: 766px;
+  margin-left: 15px;
+  background-image: url("../img/about-content.png");
+}

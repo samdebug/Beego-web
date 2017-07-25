@@ -1,0 +1,32 @@
+/*
+ * Samdebug css 2.0
+ * https://github.com/samdebug
+ *
+ * Copyright 2017/07/07, China
+ * 
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+/*自定义css*/
+
+body {
+ 	background-image: linear-gradient(to bottom right,#223965,#2e4fb3);
+}
+
+.manual-header {
+    background-color: rgba(255, 255, 255, 0) !important;
+    border-bottom: none !important;
+}
+
+.manual-body .page-left {
+    background-color: rgba(255, 255, 255, 0) !important;
+    border-right: none;
+}
+
+.manual-body .page-left .menu li.active .item {
+    border-left: none !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+    color: #2f3033;
+    padding-left: 47px;
+}

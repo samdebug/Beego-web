@@ -1,0 +1,385 @@
+.backgroundTop {
+  background-image: url(../img/account-setting-background-top.png)!important;
+}
+.tab {width: 105px!important;}
+
+#main {padding-bottom: 0px!important;}
+#backgroundPanel {
+  width: 1780px;
+  min-height: 750px;
+  background-color: rgba(27, 53, 56, 0.9);
+  margin-left: 15px;
+}
+
+#account-panel-header {
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	background-color: rgba(123, 245, 254, 0.1);
+	text-align: center;
+}
+
+#account-panel-header-span {
+	font-size: 16px;
+	color: #7bf5fe;
+}
+
+#add-user {
+  width: 375px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.add-user-li {margin-top: 30px;}
+
+.add-user-div {
+  display: list-item;
+  float: left;
+}
+
+.add-user-div::after {
+  content: ".";
+  visibility: hidden;
+  clear: both;
+  display: block;
+}
+
+.add-user-input-area {
+  display: list-item;
+}
+
+.add-user-input {
+  width: 250px!important;
+  height: 34px;
+  font-family: "Microsoft Yahei";
+  background: transparent !important;
+  width: 100%;
+  color: rgba(123, 245, 254, 0.5);
+  padding: 0 0 0 10px;
+  margin: 0;
+  border: 1px solid #407F85;
+  box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+  border-radius: 1px;
+}
+.add-user-label {padding-top: 4px; margin-right: 25px;}
+.add-user-label-span {color: #7bf5fe; cursor: default;}
+.hints {color: rgba(123, 245, 254, 0.5); font-size: 12px;}
+
+.button-pair-li {float: left;}
+.button-pair-div {
+  height: 34px;
+  line-height: 34px;
+  margin: 0 5px;
+}
+
+.button-pair {
+  margin-left: 105px;
+}
+
+.add-user-menu-header {
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+}
+.add-user-menu-label {margin-right: 25px;}
+.placeholder {visibility: hidden;}
+#add-user-menu-header-span {
+  margin: 0 20px;
+}
+#menu-hint {margin-top: 10px;}
+#menu-hint-span {
+  font-size: 16px;
+  color: #71f5ff;
+  opacity: 0.5;
+}
+#menu-hint-clickable {
+  color: #71f5ff;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.menu {margin-left: 110px;}
+
+#menu {
+  margin-top: 8px;
+  height: 240px;
+  border: 1px solid rgba(64, 127, 113, 0.5);
+  background: rgba(48, 102, 109, 0.2);
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.25);
+  padding-top: 2px;
+  width: 245px;
+  cursor: default;
+}
+
+#menu-header {
+  font-size: 14px;
+  color: rgba(113, 245, 255, 0.8);
+  margin-left: 10px;
+}
+
+#menu-scroll {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 200px;
+  margin-top: 6px;
+  padding-right: 5px;
+  width: 240px;
+  z-index: 24800;
+}
+
+/***************style of scroll bar***************/
+#menu-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+/* 滚动槽 */
+#menu-scroll::-webkit-scrollbar-track {
+  color: transparent;
+}
+/* 滚动条滑块 */
+#menu-scroll::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #4a9399;
+  -webkit-box-shadow: white;
+}
+#menu-scroll::-webkit-scrollbar-thumb:window-inactive {
+  background: #4a9399;
+}
+#menu-scroll {
+  scrollbar-arrow-color: #4a9399;
+  scrollbar-face-color: #4a9399;
+  scrollbar-3dlight-color: white;
+  scrollbar-highlight-color: white;
+  scrollbar-shadow-color: #4a9399;
+  scrollbar-darkshadow-color: white;
+  scrollbar-track-color: white;
+  scrollbar-base-color: white;
+}
+/***************end of scroll bar style***************/
+
+.menu-li {
+  line-height: 28px;
+  height: 28px;
+  position: relative;
+}
+
+.menu-li:hover {
+  background-image: linear-gradient(90deg, rgba(170, 251, 255, 0.2) 0%, rgba(113, 245, 255, 0.00) 100%);
+}
+
+.menu-span {
+  margin-left: 25px;
+  cursor: default;
+  font-size: 14px;
+  color: #71f5ff;
+  opacity: 0.8;
+}
+
+#popup-body {padding: 20px 55px;}
+/*.add-user-menu {position: relative;}*/
+#add-user-ul {position: relative;}
+.group-list-panel {
+  display: none;
+  position: absolute;
+  top: 195px;
+  left: 275px;
+  width: 252px;
+  height: 456px;
+  background: #1B3538;
+  border: 1px solid #71F5FF;
+  box-shadow: 0px 0px 30px 0px rgba(112,244,255,0.49);
+  z-index: 25900;
+}
+
+.group-list-button-img {
+  width: 13px;
+  height: 13px;
+}
+.group-list-button-span {
+  color: #71F5FF;
+  margin-left: 5px;
+}
+.searchBox-div {
+  width: 230px;
+  border: 1px solid #407F85;
+  box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+  border-radius: 1px;
+  height: 34px;
+  padding: 5px;
+  margin: 10px;
+  position: relative;
+}
+.searchBox-button-span {
+  margin: 0 10px;
+}
+.group-list-button {
+  display: list-item;
+  float: left;
+  height: 34px;
+  line-height: 34px;
+  margin: 0px 5px;
+}
+.group-list-body {
+  width: 240px;
+  height: 325px;
+  margin-bottom: 25px;
+  padding-right: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+.group-list-body-groove {
+  width: 4px;
+  height: 325px;
+  position: absolute;
+  right: 10px;
+  top: 53px;
+  opacity: 0.2;
+  background: #71F5FF;
+  display: none;
+}
+/***************style of scroll bar***************/
+.group-list-body::-webkit-scrollbar {
+  width: 8px;
+}
+/* 滚动槽 */
+.group-list-body::-webkit-scrollbar-track {
+  color: transparent;
+}
+/* 滚动条滑块 */
+.group-list-body::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #4a9399;
+  -webkit-box-shadow: white;
+}
+.group-list-body::-webkit-scrollbar-thumb:window-inactive {
+  background: #4a9399;
+}
+.group-list-body {
+  scrollbar-arrow-color: #4a9399;
+  scrollbar-face-color: #4a9399;
+  scrollbar-3dlight-color: white;
+  scrollbar-highlight-color: white;
+  scrollbar-shadow-color: #4a9399;
+  scrollbar-darkshadow-color: white;
+  scrollbar-track-color: white;
+  scrollbar-base-color: white;
+}
+/***************end of scroll bar style***************/
+.searchBox-img {
+  opacity: 0.5;
+}
+.searchBox-button {
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  position: absolute;
+  right: 3px;
+  top: 4px;
+}
+.group-list-search-input {
+  width: 150px !important;
+  font-family: "Microsoft Yahei" !important;
+	background: transparent !important;
+	color: rgba(123, 245, 254, 0.5);
+	padding: 0 5px 0 5px !important;
+	margin: 0 !important;
+	border-radius: 1px !important;
+  border: 0!important;
+}
+.group-list-search-input:focus {
+  color: rgba(123, 245, 254, 1) !important;
+}
+.group-list-button-pair {
+  height: 50px;
+  padding: 8px 40px;
+  background: #22484C;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+}
+.group-list-ul {}
+.group-list-li {
+  height: 30px;
+  line-height: 30px;
+  cursor: default;
+}
+.group-list-img {
+  opacity: 0.5;
+  height: 12px;
+  width: 12px;
+  margin-left: 15px;
+  margin-right: 8px;
+}
+.group-list-span {
+  color: rgba(123, 245, 254, 0.5);
+  font-size: 14px;
+}
+.group-list-li:hover {
+  background-image: linear-gradient(90deg, rgba(170, 251, 255, 0.2) 0%, rgba(113,245,255,0.00) 89%);
+}
+
+.add-user-menu-header-on {
+  background: #041618;
+  background-image: linear-gradient(-180deg, rgba(0,0,0,0.00) 50%, rgba(123, 245, 254, 0.1) 100%);
+  box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.41);
+  border-radius: 1px;
+}
+.menu-img {
+  position: absolute;
+  right: 20px;
+  top: 7px;
+  display: none;
+}
+
+#create-group-list {
+  width: 502px;
+  height: 352px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 25950;
+}
+
+#create-input-name {
+  width: 302px;
+  height: 34px;
+}
+#create-input-name:focus {
+  border: 1px solid rgba(123, 245, 254, 1);
+  color: rgba(123, 245, 254, 1);
+}
+
+.create-group-span {
+  cursor: default;
+  color: rgba(123, 245, 254, 1);
+  margin-right: 20px;
+}
+
+#popup-body {padding: 30px 70px !important;}
+.create-group-div {margin-bottom: 20px;}
+
+.remark-div {
+  display: list-item;
+  float: left;
+}
+#create-group-remark-textarea {
+  width: 302px;
+  height: 130px;
+  resize: none;
+  padding: 5px 10px;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 3px 0 rgba(0,0,0,.5);
+  box-sizing: border-box;
+  font-size: 14px;
+  border: 1px solid rgba(123, 245, 254, 0.5);
+  background-color: transparent;
+  color: rgba(123, 245, 254, 0.5);
+}
+
+#create-group-remark-textarea:focus {
+  border: 1px solid rgba(123, 245, 254, 1);
+  color: rgba(123, 245, 254, 1);
+}

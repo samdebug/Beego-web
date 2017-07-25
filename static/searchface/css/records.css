@@ -1,0 +1,169 @@
+.backgroundTop {
+  background-image: url(../img/account-setting-background-top.png)!important;
+}
+.tab {width: 105px!important;}
+
+#records-header {
+  width: 1812px;
+  background-color: rgba(27, 53, 56, 0.9);
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 20px;
+  padding-left: 40px;
+  cursor: default;
+}
+
+#backgroundPanel {
+  width: 1780px;
+  min-height: 600px;
+  margin-left: 15px;
+}
+
+.records-header {
+  line-height: 50px;
+  height: 50px;
+  margin-bottom: 1px;
+  background-color: rgba(27, 53, 56, 0.9);
+  cursor: default;
+}
+
+.records-header-img {margin: 0 5px;}
+.records-header-span {
+  font-size: 16px;
+  color: rgba(123, 245, 254, 0.5);
+}
+
+.divider {
+  height: 30px;
+  margin: 10px 0;
+}
+
+.records-items-title {
+  float: left;
+  display: list-item;
+  padding-left: 20px;
+  position: relative;
+}
+
+.records-items-title-span, .records-items-column-span {
+  font-size: 16px;
+  color: rgba(123, 245, 254, 0.5);
+}
+
+.module {width: 200px; margin-left: 10px;}
+.operation {width: 150px;}
+.detail {
+  width: 660px;
+  overflow: hidden;
+}
+.records-item div {
+  max-height: 90px;
+}
+.username {width: 215px;}
+.account {width: 300px;}
+.time {width: 240px;}
+
+.item-li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.item-divider {
+  height: 0;
+  margin: 0;
+}
+
+.item-background {
+  background-color: rgba(27, 53, 56, 0.9);
+  min-height: 600px;
+}
+
+.records-item {
+  min-height: 50px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(123, 245, 254, 0.07);
+}
+.records-item::hover {}
+.records-item::after {
+  content: ".";
+  visibility: hidden;
+  clear: both;
+  height: 0;
+  display: block;
+}
+
+.column-divider {
+  visibility: hidden;
+  height: 1px;
+  display: list-item;
+  float: left;
+}
+
+.records-items-column {
+  float: left;
+  display: list-item;
+  padding-left: 20px;
+}
+
+.records-items-div {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  height: 34px;
+  line-height: 34px;
+  width: 120px;
+  background: #22484C;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.records-items-div-on {
+  background: #041618 !important;
+  background-image: linear-gradient(-180deg, rgba(0,0,0,0.00) 50%, rgba(123, 245, 254, 0.1) 100%) !important;
+  box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.41) !important;
+}
+
+.records-items-div-span {
+  margin-left: 10px;
+  color: rgba(123, 245, 254, 1);
+  font-size: 16px;
+}
+.account-filter {width: 190px!important;}
+.module-filter-div, .account-filter-div {
+  background: #1B3538;
+  border: 1px solid rgba(112,244,255,0.10);
+  box-shadow: 0px 0px 4px 0px rgba(113,245,255,0.30);
+  display: none;
+}
+
+.module-filter-ul, .account-filter-ul{
+  margin: 8px 0;
+}
+
+.module-filter-li, .account-filter-li {
+  line-height: 24px;
+  height: 24px;
+  /*margin: 2px 0;*/
+  /*border-top: 2px solid transparent;
+  border-bottom: 2px solid transparent;*/
+}
+.module-filter-li:hover, .account-filter-li:hover {
+  background-color: rgba(123, 245, 254, 0.2);
+}
+.module-filter-item-span, .account-filter-item-span {
+  font-size: 14px;
+  color: rgba(123, 245, 254, 0.6);
+  margin-left: 10px;
+}
+.module-filter-item-span:hover {
+
+}
+.more {
+  font-size: 16px;
+  color: rgba(123, 245, 254, 0.5);
+}
+.detail-div {
+  max-height: 63px !important;
+  overflow: hidden;
+}

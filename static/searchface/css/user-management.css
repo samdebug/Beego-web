@@ -1,0 +1,307 @@
+.backgroundTop {
+  background-image: url(../img/account-setting-background-top.png)!important;
+}
+.tab {width: 105px!important;}
+
+#um-header {
+  width: 1812px;
+  background-color: rgba(27, 53, 56, 0.9);
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 20px;
+}
+
+#backgroundPanel {
+  width: 1780px;
+  min-height: 600px;
+  margin-left: 15px;
+}
+
+#quota {
+  margin-left: 20px;
+  color: rgba(123, 245, 254, 0.5);
+}
+
+.user-list-header {
+  margin-bottom: 1px;
+  height: 50px;
+  line-height: 50px;
+  background-color: rgba(27, 53, 56, 0.9);
+  padding: 0 25px;
+}
+
+.user-list-header-span {
+  font-size: 16px;
+  color: rgba(123, 245, 254, 0.5);
+}
+.divider {
+  height: 30px;
+  margin: 10px 0;
+}
+.item-li {
+  display: inline-block;
+  vertical-align: top;
+}
+.item-divider {
+  height: 0;
+  margin: 0;
+}
+.user-column {width: 175px;}
+.account-column {
+  width: 265px;
+  margin-left: 30px;
+}
+.privilege-column {margin-left: 30px;}
+.user-list-li {float: left;}
+
+.privilege-ul {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+.privilege-li {
+  width: 1200px;
+  margin-bottom: 8px;
+}
+.user-list-span, .privilege-span {
+  font-size: 16px;
+  color: rgba(123, 245, 254, 0.5);
+  cursor: default;
+}
+
+.item-background {
+  background-color: rgba(27, 53, 56, 0.9);
+  min-height: 600px;
+}
+.user-list-items {
+  width: 100%;
+  min-height: 50px;
+  padding: 14px 25px;
+  border-bottom: 1px solid rgba(123, 245, 254, 0.07); #7BF5FE;
+}
+.user-list-items-normal {
+  width: 100%;
+  min-height: 50px;
+  padding: 14px 25px;
+  border-bottom: 1px solid rgba(123, 245, 254, 0.07); #7BF5FE;
+}
+.user-list-items-hover {
+  background-color: rgba(49, 103, 109, 0.5);
+}
+.user-list-items:hover {
+  background-color: rgba(49, 103, 109, 0.5);
+}
+.privilege-div {position: relative;}
+.call-group-list-div {
+  position: absolute;
+  top: 0;
+  left: 120px;
+  width: 250px;
+}
+.call-group-list-button {
+  background: #31676D;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+  border-radius: 2px;
+  height: 24px;
+  width: 72px;
+  line-height: 24px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.group-list-button-img {
+  width: 13px;
+  height: 13px;
+}
+.group-list-button-span {
+  color: #71F5FF;
+  margin-left: 5px;
+}
+.group-list-panel {
+  background: #1B3538;
+  border: 1px solid #71F5FF;
+  box-shadow: 0px 0px 30px 0px rgba(112,244,255,0.49);
+  position: relative;
+}
+.searchBox-div {
+  width: 230px;
+  border: 1px solid #407F85;
+  box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.50);
+  border-radius: 1px;
+  height: 34px;
+  padding: 5px;
+  margin: 10px;
+  position: relative;
+}
+.searchBox-button-span {
+  margin: 0 10px;
+}
+.group-list-button {
+  display: list-item;
+  float: left;
+  height: 34px;
+  line-height: 34px;
+  margin: 0px 5px;
+}
+.group-list-body {
+  width: 240px;
+  height: 325px;
+  margin-bottom: 25px;
+  padding-right: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+.group-list-body-groove {
+  width: 4px;
+  height: 325px;
+  position: absolute;
+  right: 10px;
+  top: 53px;
+  opacity: 0.2;
+  background: #71F5FF;
+  display: none;
+}
+/***************style of scroll bar***************/
+.group-list-body::-webkit-scrollbar {
+  width: 8px;
+}
+/* 滚动槽 */
+.group-list-body::-webkit-scrollbar-track {
+  color: transparent;
+}
+/* 滚动条滑块 */
+.group-list-body::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: #4a9399;
+  -webkit-box-shadow: white;
+}
+.group-list-body::-webkit-scrollbar-thumb:window-inactive {
+  background: #4a9399;
+}
+.group-list-body {
+  scrollbar-arrow-color: #4a9399;
+  scrollbar-face-color: #4a9399;
+  scrollbar-3dlight-color: white;
+  scrollbar-highlight-color: white;
+  scrollbar-shadow-color: #4a9399;
+  scrollbar-darkshadow-color: white;
+  scrollbar-track-color: white;
+  scrollbar-base-color: white;
+}
+/***************end of scroll bar style***************/
+.searchBox-img {
+  opacity: 0.5;
+}
+.searchBox-button {
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  position: absolute;
+  right: 3px;
+  top: 4px;
+}
+.group-list-search-input {
+  width: 150px !important;
+  font-family: "Microsoft Yahei" !important;
+	background: transparent !important;
+	color: rgba(123, 245, 254, 0.5) !important;
+	padding: 0 5px 0 5px !important;
+	margin: 0 !important;
+	border-radius: 1px !important;
+  border: 0!important;
+}
+.group-list-button-pair {
+  height: 50px;
+  padding: 8px 40px;
+  background: #22484C;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+}
+.group-list-ul {}
+.group-list-li {
+  height: 30px;
+  line-height: 30px;
+  cursor: default;
+}
+.group-list-img {
+  opacity: 0.5;
+  height: 12px;
+  width: 12px;
+  margin-left: 15px;
+  margin-right: 8px;
+}
+.group-list-span {
+  color: rgba(123, 245, 254, 0.5);
+  font-size: 14px;
+}
+.group-list-li:hover {
+  background-image: linear-gradient(90deg, rgba(170, 251, 255, 0.2) 0%, rgba(113,245,255,0.00) 89%);
+}
+.item-li-img {
+  float: right;
+  margin: 0 5px;
+  display: none;
+  cursor: pointer;
+}
+.group-list-panel, .call-group-list-button {
+  display: none;
+}
+
+.call-group-list-div {z-index: 26009;}
+.call-group-list-button-on {
+  background: #041618;
+  background-image: linear-gradient(-180deg, rgba(0,0,0,0.00) 50%, rgba(123, 245, 254, 0.1) 100%);
+  box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.41);
+  border-radius: 1px;
+}
+.item-li-img-edit {
+  height: 14px;
+  width: 14px;
+}
+.item-li-img-delete {height: 14px;}
+
+#create-user {
+  float: left;
+  margin-left: 40px;
+}
+
+#check-record {
+  float: right;
+  margin-right: 16px;
+}
+
+#create-user, #check-record {
+  height: 34px;
+  line-height: 34px;
+  margin-top: 8px;
+  display: inline-block;
+  background: #31676D;
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.26);
+  border-radius: 2px;
+  padding: 0 20px;
+  cursor: pointer;
+}
+#create-user-span {color: #71F5FF;}
+
+#deleteConfirmBox {
+  width: 500px;
+  height: 352px;
+  z-index: 25010;
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#delete-warning-span {
+  font-size: 20px;
+  color: #7bf5fe;
+}
+#deleted-account {color: yellow!important;}
+#popup-body {position: relative;}
+#alart-box {
+  position: absolute;
+  margin: 80px 0;
+  text-align: center;
+  width: 100%;
+}

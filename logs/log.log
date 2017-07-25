@@ -1,0 +1,27 @@
+2017/07/13 14:08:41 [I] [asm_amd64.s:2086] http server Running on http://:8181
+2017/07/13 14:08:44 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|  16.451748ms|   match|[44m GET     [0m /book   r:/book
+2017/07/13 14:08:44 [D] [server.go:2202] |   192.168.2.39|[47m 304 [0m|    417.183µs|   match|[44m GET     [0m /static/MultiUpload/core/File.js
+2017/07/13 14:08:44 [D] [server.go:2202] |   192.168.2.39|[47m 304 [0m|    492.204µs|   match|[44m GET     [0m /static/MultiUpload/control/js/Upload.js
+2017/07/13 14:08:44 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|    293.433µs|   match|[44m GET     [0m /static/MultiUpload/core/Console.js
+2017/07/13 14:08:44 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|    574.133µs|   match|[44m GET     [0m /favicon.ico
+2017/07/13 14:09:16 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|   12.76852ms|   match|[44m GET     [0m /book   r:/book
+2017/07/13 14:09:16 [D] [server.go:2202] |   192.168.2.39|[47m 304 [0m|     394.98µs|   match|[44m GET     [0m /static/MultiUpload/control/css/Upload.css
+2017/07/13 14:09:16 [D] [server.go:2202] |   192.168.2.39|[47m 304 [0m|     96.907µs|   match|[44m GET     [0m /static/MultiUpload/core/Console.js
+2017/07/13 14:09:16 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|     383.11µs|   match|[44m GET     [0m /favicon.ico
+2017/07/13 14:12:35 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|  24.381477ms|   match|[44m GET     [0m /manager/librarys/7/targets   r:/manager/librarys/:lib/targets
+2017/07/13 14:12:35 [D] [server.go:2202] |   192.168.2.16|[47m 304 [0m|    237.204µs|   match|[44m GET     [0m /static/cropper/2.3.4/cropper.min.css
+2017/07/13 14:12:35 [D] [server.go:2202] |   192.168.2.16|[47m 304 [0m|   1.025826ms|   match|[44m GET     [0m /static/webuploader/webuploader.min.js
+2017/07/13 14:12:35 [D] [server.go:2202] |   192.168.2.16|[47m 304 [0m|     204.74µs|   match|[44m GET     [0m /static/cropper/2.3.4/cropper.min.js
+2017/07/13 14:12:48 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|  14.754041ms|   match|[44m GET     [0m /manager/users   r:/manager/users
+2017/07/13 14:12:49 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|  23.554833ms|   match|[44m GET     [0m /manager/librarys   r:/manager/librarys
+2017/07/13 14:12:50 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|  13.635698ms|   match|[44m GET     [0m /manager/videos   r:/manager/videos
+2017/07/13 14:12:51 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|  13.538317ms|   match|[44m GET     [0m /manager/books   r:/manager/books
+2017/07/13 14:12:52 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|   9.273864ms|   match|[44m GET     [0m /manager/users   r:/manager/users
+2017/07/13 14:12:53 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|  24.492955ms|   match|[44m GET     [0m /manager/librarys   r:/manager/librarys
+2017/07/13 14:12:54 [D] [server.go:2202] |   192.168.2.16|[42m 200 [0m|  12.531194ms|   match|[44m GET     [0m /manager/attach/list   r:/manager/attach/list
+2017/07/13 14:28:54 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|   20.03513ms|   match|[44m GET     [0m /manager/librarys   r:/manager/librarys
+2017/07/13 14:28:55 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|  11.511952ms|   match|[44m GET     [0m /manager/librarys/7   r:/manager/librarys/:id
+2017/07/13 14:28:57 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|  22.061194ms|   match|[44m GET     [0m /manager/librarys   r:/manager/librarys
+2017/07/13 14:28:58 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|  15.811329ms|   match|[44m GET     [0m /manager/librarys/7   r:/manager/librarys/:id
+2017/07/13 14:28:59 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|  19.400899ms|   match|[44m GET     [0m /manager/librarys   r:/manager/librarys
+2017/07/13 14:29:09 [D] [server.go:2202] |   192.168.2.39|[42m 200 [0m|  15.725415ms|   match|[44m GET     [0m /manager/librarys/7/targets   r:/manager/librarys/:lib/targets
