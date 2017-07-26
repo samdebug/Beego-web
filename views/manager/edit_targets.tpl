@@ -15,7 +15,7 @@
     <link href="{{cdncss "/static/toastr/toastr.css"}}" rel="stylesheet">
 </head>
 <body>
-    <div class="manual-reader">
+    <div class="manual-reader" id="editTargets">
         {{template "widgets/header.tpl" .}}
         <div class="container-fluid manual-body">
             <div class="row">
@@ -31,7 +31,7 @@
                         <li><a href="javascript:;" class="item"><i class="icon-left lnr lnr-chart-bars" aria-hidden="true"></i> 数据统计</a> </li>
                     </ul>
                 </div>
-            <div class="page-right" id="editTargets">
+            <div class="page-right" >
                 <div class="m-box">
                     <div class="box-head">
                         <div class="row">
@@ -80,7 +80,7 @@
                                                 <button type="button" data-toggle="modal" data-target="#addPictureDialogModal" class="btn btn btn-default" style="float:none;"><i class="fa fa-plus"></i>添加照片</button>
                                                 <div class="alldom" style="margin-left: -9px;">
                                                     <ul id="divall-pic" style="padding:0">
-                                                        <li :id="'pic' + item.id" style="height: 128px;" v-for="item in pictures">
+                                                        <li :id="'pic' + index" style="height: 128px;" v-for="(item,index) in pictures">
                                                             <div v-on:mouseenter="hover(item.id)" v-on:mouseleave="hoverout(item.id)">
                                                                 <div class="delete_bar" :id="item.id">
                                                                     <div style="padding:5px;">
@@ -161,8 +161,6 @@
             </div>
         </div>
     </div>
-</div>
-
     <!-- add Picture Modal-->
     <div class="modal fade" id="addPictureDialogModal" tabindex="-1" role="dialog" aria-labelledby="addPictureDialogModalLabel">
         <div class="modal-dialog" role="document">
@@ -183,13 +181,14 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary" id="addPictureModal" data-loading-text="保存中...">添加</button>
+                        <button type="submit" class="btn btn-primary" @click="addPicture()" id="addPictureModal" data-loading-text="保存中...">添加</button>
                     </div>
                 </div>     
             </form>
         </div>
     </div>
     <!--END Modal-->
+</div>
 
 <script src="{{cdnjs "/static/jquery/2.1.1/jquery.js"}}"></script>
 <script src="{{cdnjs "/static/bootstrap/js/bootstrap.min.js"}}" type="text/javascript"></script>
@@ -235,6 +234,55 @@
                 backToAfterLibarary: function () {
                     localStorage.setItem("LibStatus",true);
                     window.location = "{{urlfor "LibController.Librarys"}}";
+                },
+                addPicture: function () {
+                    var $this = this
+                    $('#addPictureDialogModal').modal("hide");
+                    var $then = $("#addPictureDialogForm");
+                    var newPicture = $.trim($then.find("input[name='newPicture']").val());
+                    Array.prototype.push.apply($this.pictures, JSON.parse(newPicture));
+                    for (var i=0;i< JSON.parse(newPicture).length;i++) {
+                        var node = document.getElementById("pic29");
+                        var cNode = node.cloneNode(true);
+                        console.log(cNode);
+                        document.getElementById("divall-pic").appendChild(cNode);
+                    }
+                    var nodes = document.getElementById("divall-pic").childNodes;
+                    console.log(nodes);
+                    /*if (newPicture != "") {
+                        for (var i=0;i< $this.pictures.length;i++) {
+                            $this.$set('pictures[i].id',i);
+                        }
+                    }
+                    var 
+                    var cNode = node.cloneNode(true)
+                    element.appendChild(cNode);
+
+                    Array.prototype.push.apply($this.pictures, JSON.parse(newPicture));
+                    var nodes = document.getElementById("divall-pic").childNodes;
+                    console.log(nodes);
+                    console.log($this.pictures);*/
+
+                    $("#pictures").val(JSON.stringify($this.pictures));
+                    $this.setBorder($this.pictures);
+                },
+                setBorder:function (pictures) {
+                    console.log(pictures);
+                    var $this = this;
+                    for (var i=0;i<pictures.length;i++) {
+                        var that = "#pic" + pictures[i].id;
+                        console.log(pictures[i].feature);
+                        //$(that).unbind(); //移除所有
+                        if (pictures[i].feature == "") {
+                            //console.log(document.getElementById(that));
+                            $(that).css("border","1px solid rgb(212, 0, 0)");
+                            $(that).find(".file_failure").show();
+                        }else {
+                            //console.log(document.getElementById(that));
+                            $(that).css("border","1px solid rgb(16, 148, 250)");
+                            $(that).find(".file_success").show();
+                        }   
+                    }
                 }
             }
         });
@@ -248,8 +296,7 @@
             setBorder();
             function setBorder() {
                 for (var i=0;i<app.pictures.length;i++) {
-                    //console.log(app.pictures[i]);
-                    var that = "#pic" + app.pictures[i].id ;
+                    var that = "#pic" + i;
                     if (app.pictures[i].feature == "") {
                         $(that).css("border","1px solid rgb(212, 0, 0)");
                         $(that).find(".file_failure").show();
@@ -263,21 +310,6 @@
             /*设置localstorage记录进入的目标库*/
             localStorage.setItem("LibraryId",{{.Target.LibraryId}});
             localStorage.setItem("LibraryName",{{.Target.LibraryName}});
-
-            /*添加相片*/
-            $("#addPictureModal").click(function(){
-                $('#addPictureDialogModal').modal("hide");
-                var $then = $("#addPictureDialogForm");
-                var newPicture = $.trim($then.find("input[name='newPicture']").val());
-                if (newPicture != "") {
-                    app.pictures = app.pictures.concat(JSON.parse(newPicture));
-                    for (var i=0;i< app.pictures.length;i++) {
-                        app.pictures[i].id = i;
-                    }
-                }
-                $("#pictures").val(JSON.stringify(app.pictures));
-                setBorder();
-            });
         }
 
 

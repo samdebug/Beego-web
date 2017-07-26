@@ -42,28 +42,27 @@
                     </div>
                 </div>
                 <div class="box-body manager">
-                    <div class="col-md-12"  id="monitor">
+                    <div class="col-md-7"  id="monitor">
                       <!-- TODO LIST -->
                       <div class="panel vxg-players">
                         <div class="panel-heading">
                             <div class="title">
                               <div class="onAir-select">
-                                <select name="role" class="form-control col-sm-2">
+                                <select name="role" class="form-control col-sm-2 input-sm">
                                   <option value="1">摄像头1</option>
                                   <option value="2">摄像头2</option>
                                 </select>
                               </div>
                               <div class="onAir-select">
-                                <select name="role" class="form-control col-sm-2">
+                                <select name="role" class="form-control col-sm-2 input-sm">
                                   <option value="1">布控任务1</option>
                                   <option value="2">布控任务2</option>
                                 </select>
                               </div>
-
                             </div>
                             <div class="action">
                               <a class="action-btn">
-                                <button type="button" class="btn btn-primary btn-primary-pro" @click="startVXG()">开始监控</button>
+                                <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="startVXG()">开始监控</button>
                               </a>
                             </div>
                         </div>
@@ -133,7 +132,7 @@
 
                       <!-- END TODO LIST -->
                     </div>
-                    <div class="col-md-5" style="display:none">
+                    <div class="col-md-5" >
                       <div class="panel FindTarget" style="">
                       <div class="panel-heading">
                         <div class="title">
@@ -157,6 +156,7 @@
                             <div class="alert-box-inside">
                               <div class="compare col-lg-7">
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
+                                <p class="onairRatio">80%</p>
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
                               </div>
                               <div class="info col-lg-5">
@@ -179,6 +179,7 @@
                             <div class="alert-box-inside">
                               <div class="compare col-lg-7">
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
+                                <p class="onairRatio">80%</p>
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
                               </div>
                               <div class="info col-lg-5">
@@ -201,6 +202,7 @@
                             <div class="alert-box-inside">
                               <div class="compare col-lg-7">
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
+                                <p class="onairRatio">80%</p>
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
                               </div>
                               <div class="info col-lg-5">
@@ -223,6 +225,7 @@
                             <div class="alert-box-inside">
                               <div class="compare col-lg-7">
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
+                                <p class="onairRatio">80%</p>
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
                               </div>
                               <div class="info col-lg-5">
@@ -245,72 +248,7 @@
                             <div class="alert-box-inside">
                               <div class="compare col-lg-7">
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                              </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                              </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                              </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
+                                <p class="onairRatio">80%</p>
                                 <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
                               </div>
                               <div class="info col-lg-5">
@@ -472,7 +410,7 @@
         });
 
         $('#scroller').slimScroll({
-            height: '550px'
+            height: '645px'
         });
 
         //样式
