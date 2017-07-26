@@ -88,23 +88,23 @@ go build -ldflags "-H=windowsgui"
 
 **网站首页**
 
-![项目设置](https://github.com/samdebug/NWJS-Face-App/raw/master/screenshots/1.png)
+![项目设置](https://github.com/samdebug/Beego-web/raw/master/screenshots/1.png)
 
 **创建目标库**
 
-![创建项目](https://github.com/samdebug/NWJS-Face-App/raw/master/screenshots/2.png)
+![创建项目](https://github.com/samdebug/Beego-web/raw/master/screenshots/2.png)
 
 **目标库列表**
 
-![项目列表](https://github.com/samdebug/NWJS-Face-App/raw/master/screenshots/3.png)
+![项目列表](https://github.com/samdebug/Beego-web/raw/master/screenshots/3.png)
 
 **人脸库**
 
-![项目概述](https://github.com/samdebug/NWJS-Face-App/raw/master/screenshots/4.png)
+![项目概述](https://github.com/samdebug/Beego-web/raw/master/screenshots/4.png)
 
 **账号设置**
 
-![项目成员](https://github.com/samdebug/NWJS-Face-App/raw/master/screenshots/5.png)
+![项目成员](https://github.com/samdebug/Beego-web/raw/master/screenshots/5.png)
 
 
 # 使用的技术
@@ -135,4 +135,4 @@ go build -ldflags "-H=windowsgui"
 
 # 关于作者
 
-借鉴大牛的手，创造属于自己的天空 。
+学习使我快乐 。
