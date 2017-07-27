@@ -17,7 +17,7 @@
     <link href="{{cdncss "/static/toastr/toastr.css"}}" rel="stylesheet">
 
 </head>
-<body ng-app = "faceApp" ng-controller = "faceCtrl">
+<body>
 <div class="manual-reader">
     {{template "widgets/header.tpl" .}}
     <div class="container-fluid manual-body">
@@ -26,15 +26,15 @@
                 <ul class="menu" id="sidebar">
                     <li class="active"><a href="{{urlfor "ManagerController.Index"}}" class="item"><i class="icon-left lnr lnr-camera-video" aria-hidden="true"></i> 实时监控</a> </li>
                     <li><a href="{{urlfor "LibController.Librarys" }}" class="item"><i class="icon-left lnr lnr-users" aria-hidden="true"></i> 目标库管理</a> </li>
-                    <li><a href="{{urlfor "ManagerController.Users" }}" class="item"><i class="icon-left lnr lnr-camera" aria-hidden="true"></i> 视频源管理</a> </li>
+                    <li><a href="{{urlfor "VideosController.Videos" }}" class="item"><i class="icon-left lnr lnr-camera" aria-hidden="true"></i> 视频源管理</a> </li>
                     <li><a href="{{urlfor "ManagerController.Books" }}" class="item"><i class="icon-left lnr lnr-clock" aria-hidden="true"></i> 布控任务</a> </li>
-                    <li><a href="{{urlfor "ManagerController.AttachList" }}" class="item"><i class="icon-left lnr lnr-magnifier" aria-hidden="true"></i> 人脸检索</a> </li>
+                    <li><a href="{{urlfor "CompareController.One2ManySearch" }}" class="item"><i class="icon-left lnr lnr-magnifier" aria-hidden="true"></i> 人脸检索</a> </li>
 
                     <li><a href="javascript:;" class="item"><i class="icon-left lnr lnr-book" aria-hidden="true"></i> 历史记录</a> </li>
                     <li><a href="javascript:;" class="item"><i class="icon-left lnr lnr-chart-bars" aria-hidden="true"></i> 数据统计</a> </li>
                 </ul>
             </div>
-            <div class="page-right" id="onAir">
+            <div class="page-right" id="monitorList">
                 <div class="m-box">
                     <div class="box-head">
                         <span class="lnr lnr-camera-video" ></span>
@@ -47,14 +47,14 @@
                       <div class="panel vxg-players">
                         <div class="panel-heading">
                             <div class="title">
-                              <div class="onAir-select">
-                                <select name="role" class="form-control col-sm-2 input-sm">
+                               <!--<div class="onAir-select">
+                               <select name="role" class="form-control col-sm-2 input-sm">
                                   <option value="1">摄像头1</option>
                                   <option value="2">摄像头2</option>
                                 </select>
-                              </div>
+                              </div>-->
                               <div class="onAir-select">
-                                <select name="role" class="form-control col-sm-2 input-sm">
+                                <select name="role" class="form-control col-sm-2 input-sm" id="taskId">
                                   <option value="1">布控任务1</option>
                                   <option value="2">布控任务2</option>
                                 </select>
@@ -62,7 +62,8 @@
                             </div>
                             <div class="action">
                               <a class="action-btn">
-                                <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="startVXG()">开始监控</button>
+                                <button type="button" class="btn btn-danger btn-danger-pro btn-sm" @click="endTask()">结束任务</button>
+                                <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="startVXG()">开始任务</button>
                               </a>
                             </div>
                         </div>
@@ -94,34 +95,10 @@
                             </div>
                             <ul id="divall-catch" style="display:none">
                                 <div class="alldom">  
-                                  <li id="catch-0" style="display:none">
+                                  <li v-for="(item,index) in catchList">
                                       <a href="javascript:;">
-                                          <img src="" id="catch-img-0">
-                                          <p class="folder-p" id="catch-span-0"></p>
-                                      </a>
-                                  </li>
-                                  <li id="catch-1" style="display:none">
-                                      <a href="javascript:;">
-                                          <img src="" id="catch-img-1">
-                                          <p class="folder-p" id="catch-span-1"></p>
-                                      </a>
-                                  </li>
-                                  <li id="catch-2" style="display:none">
-                                      <a href="javascript:;">
-                                          <img src="" id="catch-img-2">
-                                          <p class="folder-p" id="catch-span-2"></p>
-                                      </a>
-                                  </li>
-                                  <li id="catch-3" style="display:none">
-                                      <a href="javascript:;">
-                                          <img src="" id="catch-img-3">
-                                          <p class="folder-p" id="catch-span-3"></p>
-                                      </a>
-                                  </li>
-                                  <li id="catch-4" style="display:none">
-                                      <a href="javascript:;">
-                                          <img src="" id="catch-img-4">
-                                          <p class="folder-p" id="catch-span-4"></p>
+                                          <img :src="item.url">
+                                          <p class="folder-p">${item.detail}</p>
                                       </a>
                                   </li>
                                 </div>
@@ -145,123 +122,33 @@
                       </div>
                       <div class="panel-body">
                         <div id="scroller" class="scroller">
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <p class="onairRatio">80%</p>
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
+                          <div style="display:none" id="alertBoxs">
+                            <div class="alert-box alert-default" v-for="(item,index) in alertList">
+                              <div class="alert-heading">
+                                <div class="title">
+                                  <span class="glyphicon glyphicon-camera"></span>${item.camera}</div>
+                                <div class="action">
+                                  <span class="glyphicon glyphicon-calendar"></span>${item.time}</div>
                               </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <p class="onairRatio">80%</p>
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                              </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
+                              <div class="alert-body">
+                                <div class="alert-box-inside">
+                                  <div class="compare col-lg-7">
+                                    <img class="pic-size" :src="item.targetFaceUrl" />
+                                    <p class="onairRatio">${item.threshold}</p>
+                                    <img class="pic-size" :src="item.catchFaceUrl" />
+                                  </div>
+                                  <div class="info col-lg-5">
+                                    <div><span>${item.targetName}</span></div>
+                                    <div><span>${item.targetAge}</span></div>
+                                    <div><span>${item.targetId}</span></div>
+                                    <div><span>${item.targetLibrary}</span></div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <p class="onairRatio">80%</p>
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                              </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <p class="onairRatio">80%</p>
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                              </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="alert-box alert-default" style="">
-                          <div class="alert-heading">
-                            <div class="title">
-                              <span class="glyphicon glyphicon-camera"></span>一号摄像机</div>
-                            <div class="action">
-                              <span class="glyphicon glyphicon-calendar"></span>2017年07月01号14:20:19</div>
-                          </div>
-                          <div class="alert-body">
-                            <div class="alert-box-inside">
-                              <div class="compare col-lg-7">
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                                <p class="onairRatio">80%</p>
-                                <img class="pic-size" src="http://192.168.2.82:4569/images/827083/2017-07-08%2013/1281_827083_441602199211080418_person.jpg" />
-                              </div>
-                              <div class="info col-lg-5">
-                                <div><span>马蓝鹏</span></div>
-                                <div><span>25岁</span></div>
-                                <div><span>441602199233020987</span></div>
-                                <div><span>目标库1</span></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div><!--/.row-->
-                    </div>
+                        </div><!--/.row-->
+                      </div>
                     </div>  <!--/.main-->
                     </div>
                   </div>
@@ -284,9 +171,10 @@
 <script type="text/javascript">
     $(function () {
         var app = new Vue({
-            el : "#onAir",
+            el : "#monitorList",
             data : {  
-                lists : ""
+                catchList : [],
+                alertList : []
             },
             delimiters : ['${','}'],
             methods : {
@@ -331,6 +219,9 @@
                     $("#dynamicallyPlayers").show();
                     $("#no-video-source-video").hide();
                 },
+                endTask: function() {
+                  console.log(123);
+                },
                 resizeWindows: function () {
                     var ratio = 480/640;
                     var pre_width = $("#monitor").width();
@@ -345,6 +236,7 @@
                     });
                 },
                 startWebSocket : function () {
+                    var $this = this;
                     var socket = null;
                     if ('WebSocket' in window) {
                         socket = new WebSocket("ws://192.168.2.90:8181/ws/info");
@@ -360,19 +252,9 @@
                     socket.onmessage = function(e) { 
                       var data = JSON.parse(e.data);
                       console.log(data);
-                      $("#divall-catch").show();
-                      $("#camera-error").hide();
-                      for (var i=0;i<data.length;i++) {
-                        $("#catch-" + i).show();
-                        $("#catch-img-" + i).attr('src',data[i].url);
-                        var gender_cn;
-                        if (data[i].gender == "Male") {
-                          gender_cn = "男"
-                        }else {
-                          gender_cn = "女"
-                        }
-                        $("#catch-span-" + i).text(data[i].age + "岁," +gender_cn);
-                      }
+                      $('#taskId').attr("disabled","disabled");
+                      $this.handleCatchFace(data);
+                      $this.handleAlertTarget(data);
                     }
                     socket.onerror = function () {
                       toastr['error']('WebSocket连接发生错误');
@@ -390,6 +272,41 @@
                         console.log("close");
                         socket.close();
                     }
+                },
+                handleAlertTarget: function(data){
+                    //$("#divall-catch").show();
+                    //$("#camera-error").hide();
+                    var $this = this;
+                    var alertBox = [];
+                    for (var i=0;i<data.length;i++) {
+                        if (data[i].target == null) {
+                          break;
+                        }
+                        var list = {"camera":"一号摄像头","targetName":"胡祥付","targetAge":"25岁","targetId":"441602199233020987","targetLibrary":"目标库1","time":"2017年07月01号14:20:19","catchFaceUrl":data[i].target[0].url,"threshold":parseInt(((data[i].target[0].Similarity).toFixed(2))*100) + "%","targetFaceUrl":data[i].url};
+                        alertBox.push(list);
+                    }
+                    $this.alertList = alertBox;
+                    $("#alertBoxs").show();
+                },
+                handleCatchFace: function(data){
+                    var $this = this;
+                    var catchBox = [];
+                    for (var i=0;i<data.length;i++) {
+                      /*$("#catch-" + i).show();
+                      $("#catch-img-" + i).attr('src',data[i].url);*/
+                      var gender_cn;
+                      if (data[i].gender == "Male") {
+                        gender_cn = "男"
+                      }else {
+                        gender_cn = "女"
+                      }
+                      var detail = data[i].age + "岁," + gender_cn;
+                      var list = {"detail":detail,"url":data[i].url};
+                      catchBox.push(list);
+                    }
+                    $this.catchList = catchBox;
+                    $("#divall-catch").show();
+                    $("#camera-error").hide();
                 },
                 checkVxg: function() {
                     var vxg = $("#dynamicallyPlayers").find(".vxgplayer");

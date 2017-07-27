@@ -79,8 +79,8 @@
                                             <div class="col-sm-8">
                                                 <button type="button" data-toggle="modal" data-target="#addPictureDialogModal" class="btn btn btn-default" style="float:none;"><i class="fa fa-plus"></i>添加照片</button>
                                                 <div class="alldom" style="margin-left: -9px;">
-                                                    <ul id="divall-pic" style="padding:0">
-                                                        <li :id="'pic' + index" style="height: 128px;" v-for="(item,index) in pictures">
+                                                    <ul id="divall-pic-pictures">
+                                                        <li :id="'pic' + index" v-for="(item,index) in pictures" v-bind:class="{ editPictureList_success: item.feature!='', 'editPictureList_fail': item.feature=='' }">
                                                             <div v-on:mouseenter="hover(item.id)" v-on:mouseleave="hoverout(item.id)">
                                                                 <div class="delete_bar" :id="item.id">
                                                                     <div style="padding:5px;">
@@ -90,8 +90,8 @@
                                                                 <a href="javascript:;">
                                                                     <img :src="item.url" alt="">
                                                                 </a>
-                                                                <p class="file_failure" style="display: none;"></p>
-                                                                <p class="file_success" style="display: none;"></p>
+                                                                <p class="file_failure" style="display: block;" v-if="item.feature==''"></p>
+                                                                <p class="file_success" style="display: block;" v-if="item.feature!=''"></p>
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -163,7 +163,7 @@
     </div>
     <!-- add Picture Modal-->
     <div class="modal fade" id="addPictureDialogModal" tabindex="-1" role="dialog" aria-labelledby="addPictureDialogModalLabel">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="width: 800px;">
             <form method="post" autocomplete="off" action="javascript:void(0);" id="addPictureDialogForm" class="form-horizontal">
                 <input type="hidden" name="newPicture" id="newPicture" value="">
                 <div class="modal-content">
@@ -221,7 +221,7 @@
                 },  
                 delPicture : function (id) {
                     var $this = this;
-                    $("#pic" + id).hide();
+                    //$("#pic" + id).hide();
                     $this.pictures = $this.pictures.removeByValue(id);
                     $("#pictures").val(JSON.stringify($this.pictures));
                 },
@@ -236,26 +236,33 @@
                     window.location = "{{urlfor "LibController.Librarys"}}";
                 },
                 addPicture: function () {
-                    var $this = this
-                    $('#addPictureDialogModal').modal("hide");
-                    var $then = $("#addPictureDialogForm");
-                    var newPicture = $.trim($then.find("input[name='newPicture']").val());
-                    Array.prototype.push.apply($this.pictures, JSON.parse(newPicture));
-                    for (var i=0;i< JSON.parse(newPicture).length;i++) {
+                    var $this = this;
+                    var newPicture = $("#newPicture").val();
+                    if (newPicture == "") {
+                        return false;
+                    }
+                    
+                    //$this.pictures.concat(JSON.parse(newPicture));
+                    //Array.prototype.push.apply($this.pictures, JSON.parse(newPicture));
+                    /*for (var i=0;i< JSON.parse(newPicture).length;i++) {
                         var node = document.getElementById("pic29");
                         var cNode = node.cloneNode(true);
                         console.log(cNode);
                         document.getElementById("divall-pic").appendChild(cNode);
                     }
                     var nodes = document.getElementById("divall-pic").childNodes;
-                    console.log(nodes);
-                    /*if (newPicture != "") {
-                        for (var i=0;i< $this.pictures.length;i++) {
-                            $this.$set('pictures[i].id',i);
+                    console.log(nodes);*/
+                    var oldPictureNum = $this.pictures.length;
+                    var newPictureJson = JSON.parse(newPicture);
+                    for (var i=0;i< (newPictureJson.length + oldPictureNum);i++) {
+                        if (i < oldPictureNum) {
+                            var detail = {"id":i,"feature":$this.pictures[i].feature,"url":$this.pictures[i].url};
+                        } else {
+                            var detail = {"id":i,"feature":newPictureJson[i - oldPictureNum].feature,"url":newPictureJson[i - oldPictureNum].url};
                         }
+                        $this.$set($this.pictures,i,detail);
                     }
-                    var 
-                    var cNode = node.cloneNode(true)
+                    /*var cNode = node.cloneNode(true);
                     element.appendChild(cNode);
 
                     Array.prototype.push.apply($this.pictures, JSON.parse(newPicture));
@@ -264,21 +271,38 @@
                     console.log($this.pictures);*/
 
                     $("#pictures").val(JSON.stringify($this.pictures));
-                    $this.setBorder($this.pictures);
+                    $('#addPictureDialogModal').modal("hide");
+                    $("#submitBtn").click();
+                    $("#newPicture").val("");
+                    /*for (var i=0;i<$this.pictures.length;i++) {
+                        var that = "pic" + $this.pictures[i].id;
+                        console.log($this.pictures[i].feature);
+                        //$(that).unbind(); //移除所有
+                        console.log($this.pictures[i]);
+                        if ($this.pictures[i].feature == "") {
+                            console.log(document.getElementById(that));
+                            $(that).css("border","1px solid rgb(212, 0, 0)");
+                            $(that).find(".file_failure").show();
+                        }else {
+                            console.log(document.getElementById(that));
+                            $(that).css("border","1px solid rgb(16, 148, 250)");
+                            $(that).find(".file_success").show();
+                        }   
+                    }*/
                 },
                 setBorder:function (pictures) {
                     console.log(pictures);
                     var $this = this;
                     for (var i=0;i<pictures.length;i++) {
-                        var that = "#pic" + pictures[i].id;
+                        var that = "pic" + pictures[i].id;
                         console.log(pictures[i].feature);
                         //$(that).unbind(); //移除所有
                         if (pictures[i].feature == "") {
-                            //console.log(document.getElementById(that));
+                            console.log(document.getElementById(that));
                             $(that).css("border","1px solid rgb(212, 0, 0)");
                             $(that).find(".file_failure").show();
                         }else {
-                            //console.log(document.getElementById(that));
+                            console.log(document.getElementById(that));
                             $(that).css("border","1px solid rgb(16, 148, 250)");
                             $(that).find(".file_success").show();
                         }   
@@ -287,31 +311,42 @@
             }
         });
 
-        init();
-        function init () {
-            /*初始化input的value*/
-            $("#pictures").val(JSON.stringify(app.pictures));
+        /*初始化input的value*/
+        $("#pictures").val(JSON.stringify(app.pictures));
 
-            /*设置边框*/
-            setBorder();
-            function setBorder() {
-                for (var i=0;i<app.pictures.length;i++) {
-                    var that = "#pic" + i;
-                    if (app.pictures[i].feature == "") {
-                        $(that).css("border","1px solid rgb(212, 0, 0)");
-                        $(that).find(".file_failure").show();
-                    }else {
-                        $(that).css("border","1px solid rgb(16, 148, 250)");
-                        $(that).find(".file_success").show();
-                    }
+        $("#addPictureDialogModal").on("hidden.bs.modal", function() {
+            /*$("#photo").val("");
+            var preview = document.getElementById("preview"); 
+            var childs = preview.childNodes; 
+            for(var i = 0; i < childs.length; i++) { 
+              preview.removeChild(childs[i]); 
+            }*/
+            //$("#demo").remove("form");
+        });
+
+        /*$("#addPictureDialogModal").on("show.bs.modal", function() {
+            return
+        });*/
+
+        /*设置边框*/
+        /*setBorder();
+        console.log(app.pictures);
+        function setBorder() {
+            for (var i=0;i<app.pictures.length;i++) {
+                var that = "#pic" + i;
+                if (app.pictures[i].feature == "") {
+                    $(that).css("border","1px solid rgb(212, 0, 0)");
+                    //$(that).find(".file_failure").show();
+                }else {
+                    $(that).css("border","1px solid rgb(16, 148, 250)");
+                    //$(that).find(".file_success").show();
                 }
             }
-            
-            /*设置localstorage记录进入的目标库*/
-            localStorage.setItem("LibraryId",{{.Target.LibraryId}});
-            localStorage.setItem("LibraryName",{{.Target.LibraryName}});
-        }
-
+        }*/
+        
+        /*设置localstorage记录进入的目标库*/
+        localStorage.setItem("LibraryId",{{.Target.LibraryId}});
+        localStorage.setItem("LibraryName",{{.Target.LibraryName}});
 
         $("#saveTargetInfoForm").ajaxForm({
             beforeSubmit : function () {
@@ -341,33 +376,36 @@
                 $("#btnLibraryInfo").button("reset");
             }
         });
-
         $("#demo").zyUpload({
-            width            :   "100%",                 // 宽度
+            width            :   "100%",                  // 宽度
             height           :   "400px",                 // 宽度
             itemWidth        :   "100px",                 // 文件项的宽度
             itemHeight       :   "122px",                 // 文件项的高度
-            url              :   "{{urlfor "TargetController.UploadTarget" ":lib" 1 }}",  // 上传文件的路径
+            url              :   "{{urlfor "TargetController.UploadTarget"}}",  // 上传文件的路径
             multiple         :   true,                    // 是否可以多个文件上传
             dragDrop         :   true,                    // 是否可以拖动上传文件
             del              :   true,                    // 是否可以删除文件
             finishDel        :   false,                   // 是否在上传文件完成后删除预览
+            submitDel        :   true,                    // 是否在上传文件完成后删除预览
             /* 外部获得的回调接口 */
             onSelect: function(files, allFiles){                        // 选择文件的回调方法
             },
             onDelete: function(file, surplusFiles){                     // 删除一个文件的回调方法
                 $("#newPicture").val(JSON.stringify(surplusFiles));
             },
-            onSuccess: function(file,rep,files){                                  // 文件上传成功的回调方法
+            onSuccess: function(file,rep,files){                        // 文件上传成功的回调方法
                 $("#newPicture").val(JSON.stringify(files));
             },
-            onFailure: function(file,rep,files){                                  // 文件上传失败的回调方法
+            onFailure: function(file,rep,files){                        // 文件上传失败的回调方法
                 toastr['error'](rep);
             },
             onComplete: function(responseInfo){                         // 上传完成的回调方法
+            },
+            onSubmitFiles: function(responseInfo){                         // 上传完成的回调方法
             }
         });
         $(".upload_btn").hide();
+        $("#submitBtn").hide();
     });
 </script>
 </body>

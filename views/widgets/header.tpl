@@ -6,7 +6,7 @@
             </a>
             <div class="searchbar pull-left visible-lg-inline-block visible-md-inline-block">
                 <form class="form-inline" action="{{urlfor "SearchController.Index"}}" method="get">
-                    <input class="form-control" name="keyword" type="search" style="height: 34px;width: 230px;border: 1px solid#e6e9f0;" placeholder="请输入关键词..." value="{{.Keyword}}">
+                    <input class="form-control" name="keyword" type="search" style="height: 34px;width: 230px;border: 1px solid rgb(230, 233, 240);border-radius: 40px;background: #f5f7fa;color: #8d9199;" placeholder="请输入关键词..." value="{{.Keyword}}">
                     <button class="search-btn">
                         <i class="lnr lnr-magnifier"></i>
                     </button>

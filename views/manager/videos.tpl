@@ -12,6 +12,7 @@
     <link href="{{cdncss "/static/new/global.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/linearicons/style.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/toastr/toastr.css"}}" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/datatables/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
    
 </head>
 <body ng-app = "libraryApp" ng-controller = "libraryCtrl">
@@ -57,7 +58,7 @@
                                                 </div>
                                             </template>
                                             <template v-else>
-                                                <table class="table table-hover">
+                                                <table class="table table-hover" id="videoTable">
                                                     <thead>
                                                     <tr>
                                                         <th>名称</th>
@@ -174,7 +175,9 @@
 <!--END Modal-->
 
 
-<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="{{cdnjs "/static/jquery/2.1.1/jquery.js"}}"></script>
+<script src="{{cdnjs "/static/datatables/jquery.dataTables.min.js"}}"></script>
+<script src="{{cdnjs "/static/datatables/dataTables.bootstrap.min.js"}}"></script>
 <script src="{{cdnjs "/static/layer/layer.js"}}" type="text/javascript"></script>
 <script src="{{cdnjs "/static/js/jquery.form.js"}}" type="text/javascript"></script>
 <script src="/static/vuejs/vue.min.js"></script>
@@ -262,6 +265,26 @@
         });
         Vue.nextTick(function () {
             $("[data-toggle='tooltip']").tooltip();
+        });
+        $(document).ready(function() {
+            $('#videoTable').dataTable({
+                "sPaginationType" : "full_numbers",
+                "oLanguage" : {
+                    "sLengthMenu": "每页显示 _MENU_ 条记录",
+                    "sZeroRecords": "抱歉， 没有找到",
+                    "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                    "sInfoEmpty": "没有数据",
+                    "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                    "sZeroRecords": "没有检索到数据",
+                     "sSearch": "搜索:",
+                    "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                    }     
+                }
+            });
         });
     });
 </script>

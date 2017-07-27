@@ -5,6 +5,7 @@
 var ZYFILE = {
 		fileInput : null,             // 选择文件按钮dom对象
 		uploadInput : null,           // 上传文件按钮dom对象
+		submitInput: null,			  //提交文件按钮dom对象
 		dragDrop: null,				  //拖拽敏感区域
 		url : "",  					  // 上传action路径
 		uploadFile : [],  			  // 需要上传的文件数组
@@ -33,6 +34,9 @@ var ZYFILE = {
 		
 		},
 		onComplete : function(responseInfo){         // 提供给外部获取全部文件上传完成，供外部实现完成效果
+			
+		},
+		onSubmitFiles : function(responseInfo){         //   提供给外部获取点击提交后初始化，供外部实现完成效果
 			
 		},
 		
@@ -175,10 +179,16 @@ var ZYFILE = {
 		    // 完成
 		    xhr.addEventListener("load", function(e){
 	    		// 从文件中删除上传成功的文件  false是不执行onDelete回调方法
+	    		if (xhr.status != 200) {
+	    			layer.msg("图片上传识别失败");
+	    			self.funDeleteFile(file.index,true);
+	    			return false;
+	    		}
 	    		console.log(JSON.parse(xhr.responseText));
 	    		var respon = JSON.parse(xhr.responseText);
 	    		file.uid = respon.data.name;
 			    file.url = respon.data.url;
+			    file.id = "";
 			    file.feature = respon.data.feature;
 	    		if (respon.errcode != 0){
 		    		file.verified = "fail";
@@ -211,6 +221,12 @@ var ZYFILE = {
 		funReturnNeedFiles : function(){
 			return this.uploadFile;
 		},
+
+		funSubmitFiles : function(e){
+			var self = this;
+			self.onSubmitFiles(self.uploadFile,"success");
+			self.uploadFile = [];
+		},
 		
 		// 初始化
 		init : function(){  // 初始化方法，在此给选择、上传按钮绑定事件
@@ -235,6 +251,13 @@ var ZYFILE = {
 				// 绑定click事件
 				this.uploadInput.addEventListener("click", function(e) {
 					self.funUploadFiles(e); 
+				}, false);	
+			}
+
+			if(self.submitInput){
+				// 绑定click事件
+				this.submitInput.addEventListener("click", function(e) {
+					self.funSubmitFiles(e); 
 				}, false);	
 			}
 		}

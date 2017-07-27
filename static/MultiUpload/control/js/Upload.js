@@ -24,17 +24,19 @@
 					height           : "400px",  					// 宽度
 					itemWidth        : "100px",                     // 文件项的宽度
 					itemHeight       : "122px",                     // 文件项的高度
-					url              : "http://192.168.2.84:8181/uploads/",  	// 上传文件的路径
+					url              : "",  	                    // 上传文件的路径
 					multiple         : true,  						// 是否可以多个文件上传
 					dragDrop         : true,  						// 是否可以拖动上传文件
 					del              : true,  						// 是否可以删除文件
 					finishDel        : false,  						// 是否在上传文件完成后删除预览
+					submitDel        : false,                       // 是否在提交文件后初始化
 					/* 提供给外部的接口方法 */
 					onSelect         : function(selectFiles, files){},// 选择文件的回调方法  selectFile:当前选中的文件  allFiles:还没上传的全部文件
 					onDelete		 : function(file, files){},     // 删除一个文件的回调方法 file:当前删除的文件  files:删除之后的文件
 					onSuccess		 : function(file){},            // 文件上传成功的回调方法
 					onFailure		 : function(file){},            // 文件上传失败的回调方法
 					onComplete		 : function(responseInfo){},    // 上传完成的回调方法
+					onSubmitFiles	 : function(responseInfo){}     // 点击提交后的回调方法
 			};
 			
 			para = $.extend(defaults,options);
@@ -72,6 +74,7 @@
 		            html += '				<div class="btns">';
 		            html += '					<div class="webuploader_pick">选择文件</div>';
 		            html += '					<div class="upload_btn">开始上传</div>';
+		            html += '					<div class="submit_btn" id="submitBtn">提交</div>';
 		            html += '				</div>';
 		            html += '			</div>';
 					html += '			<div id="preview" class="upload_preview">';
@@ -100,6 +103,7 @@
 		            html += '					<input id="fileImage" type="file" size="30" name="fileselect[]" '+multiple+'>';
 		            html += '					<div class="webuploader_pick">选择文件</div>';
 		            html += '					<div class="upload_btn">开始上传</div>';
+		            html += '					<div class="submit_btn" id="submitBtn">提交</div>';
 		            html += '				</div>';
 		            html += '			</div>';
 		            html += '			<div id="preview" class="upload_preview">';
@@ -283,6 +287,7 @@
 				var params = {
 					fileInput: $("#fileImage").get(0),
 					uploadInput: $("#fileSubmit").get(0),
+					submitInput: $("#submitBtn").get(0),
 					dragDrop: $("#fileDragArea").get(0),
 					url: $("#uploadForm").attr("action"),
 					
@@ -371,7 +376,7 @@
 					onDelete: function(file, files) {
 						para.onDelete(file, files);
 						// 移除效果
-						$("#uploadList_" + file.index).fadeOut();
+						$("#uploadList_" + file.index).remove();
 						// 重新设置统计栏信息
 						self.funSetStatusInfo(files);
 						//console.info("剩下的文件");
@@ -402,7 +407,8 @@
 							// 移除效果
 							$("#uploadList_" + file.index).fadeOut();
 							// 重新设置统计栏信息
-							self.funSetStatusInfo(ZYFILE.funReturnNeedFiles());
+							//console.log(ZYFILE.funReturnNeedFiles());
+							self.funSetStatusInfo([]);
 						}
 						para.onSuccess(file, response,files);
 					},
@@ -422,8 +428,16 @@
 					},
 					onDragLeave: function() {
 						$(this).removeClass("upload_drag_hover");
+					},
+					onSubmitFiles: function(files,response) {
+						if(para.submitDel){
+							for (var i=0;i<files.length;i++){
+								$("#uploadList_" + files[i].index).remove();
+							}
+							// 重新设置统计栏信息
+							self.funSetStatusInfo([]);
+						}
 					}
-
 				};
 				
 				ZYFILE = $.extend(ZYFILE, params);

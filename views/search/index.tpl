@@ -12,6 +12,7 @@
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
 
     <link href="/static/css/main.css" rel="stylesheet">
+    <link href="{{cdncss "/static/new/global.css"}}" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -43,7 +44,7 @@
                 </div>
                 {{else}}
                 <div class="search-empty">
-                    <img src="/static/images/search_empty.png" class="empty-image">
+                    <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" class="empty-image">
 					<span class="empty-text">暂无相关搜索结果</span>
                 </div>
                 {{end}}
@@ -54,7 +55,6 @@
             </div>
         </div>
     </div>
-    {{template "widgets/footer.tpl" .}}
 </div>
 <script src="{{cdnjs "/static/jquery/1.12.4/jquery.min.js"}}"></script>
 <script src="{{cdnjs "/static/bootstrap/js/bootstrap.min.js"}}"></script>

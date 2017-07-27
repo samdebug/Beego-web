@@ -382,6 +382,13 @@
 
 <script type="text/javascript">
     $(function () {
+        /*for (var i=0;i<5;i++) {
+            setTimeout(function(){
+                console.log(new Date,i);
+            },1000);
+        }
+        console.log(new Date,i);*/
+
         var app = new Vue({
             el : "#LibraryList",
             data : {  
@@ -499,8 +506,8 @@
             onComplete: function(responseInfo){                     // 上传完成的回调方法
             }
         });
-
         $(".upload_btn").hide();
+        $("#submitBtn").hide();
         $('#deleteLibraryModal').on('show.bs.modal', function(e) {
             var id = $(e.relatedTarget).data('id');
             $('#delId').val(id)

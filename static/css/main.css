@@ -374,8 +374,9 @@ textarea{
     margin: 5px auto;
     display: block;
     text-align: center;
-    opacity: 0.3;
-    filter: alpha(opacity=30);
+    width: 300px;
+    /*opacity: 0.3;
+    filter: alpha(opacity=30);*/
 }
 .manual-search-reader .search-item{
     margin: 0 15px;
