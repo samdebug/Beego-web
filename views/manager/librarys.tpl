@@ -8,13 +8,13 @@
     <!-- Bootstrap -->
     <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
-    <link href="/static/css/main.css" rel="stylesheet">
-    <link href="/static/webuploader/webuploader.css" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main.css"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/webuploader/webuploader.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/new/global.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/linearicons/style.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/toastr/toastr.css"}}" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/datatables/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="{{cdncss "/static/MultiUpload/control/css/Upload.css"}}" type="text/css" rel="stylesheet" >
+    <link href="https://cdn.bootcss.com/datatables/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -27,7 +27,7 @@
                         <li><a href="{{urlfor "ManagerController.Index"}}" class="item"><i class="icon-left lnr lnr-camera-video" aria-hidden="true"></i> 实时监控</a> </li>
                         <li class="active"><a href="{{urlfor "LibController.Librarys" }}" class="item"><i class="icon-left lnr lnr-users" aria-hidden="true"></i> 目标库管理</a> </li>
                         <li><a href="{{urlfor "VideosController.Videos" }}" class="item"><i class="icon-left lnr lnr-camera" aria-hidden="true"></i> 视频源管理</a> </li>
-                        <li><a href="{{urlfor "ManagerController.Books" }}" class="item"><i class="icon-left lnr lnr-clock" aria-hidden="true"></i> 布控任务</a> </li>
+                        <li><a href="{{urlfor "MissionController.Missions" }}" class="item"><i class="icon-left lnr lnr-clock" aria-hidden="true"></i> 布控任务</a> </li>
                         <li><a href="{{urlfor "CompareController.One2ManySearch" }}" class="item"><i class="icon-left lnr lnr-magnifier" aria-hidden="true"></i> 人脸检索</a> </li>
 
                         <li><a href="javascript:;" class="item"><i class="icon-left lnr lnr-book" aria-hidden="true"></i> 历史记录</a> </li>
@@ -42,9 +42,7 @@
                                     <span class="lnr lnr-users"></span>
                                     <strong>目标库管理</strong>
                                 </a></li>
-                                <li style="display:none" id="libName">
-                                    <strong>${libName}</strong>
-                                </li>
+                                <li style="display:none" id="libName">${libName}</li>
                                 <!--<li class="active" v-if="moveTo === 'Create'">新建目标</li>
                                 <li class="active" v-if="moveTo === 'Edit'">编辑目标</li>-->
                             </ol>
@@ -217,10 +215,10 @@
                             <div class="col-sm-10">
                                 <div class="radio">
                                     <label class="radio-inline">
-                                        <input type="radio" checked="" name="gender" value="male">男<span class="text"></span>
+                                        <input type="radio" checked name="gender" value="male">男<span class="text"></span>
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" checked="" name="gender" value="female">女<span class="text"></span>
+                                        <input type="radio" name="gender" value="female">女<span class="text"></span>
                                     </label>
                                 </div>
                             </div>
@@ -230,10 +228,10 @@
                             <div class="col-sm-10">
                                 <div class="radio">
                                     <label class="radio-inline">
-                                        <input type="radio" checked="" name="level" value="1">重点<span class="text"></span>
+                                        <input type="radio" checked name="level" value="2">一般<span class="text"></span>
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" checked="" name="level" value="2">一般<span class="text"></span>
+                                        <input type="radio" name="level" value="1">重点<span class="text"></span>
                                     </label>
                                 </div>
                             </div>
@@ -241,7 +239,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="age">年龄</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="请输入年龄" name="age" id="age">
+                                <input type="text" class="form-control" placeholder="年龄" name="age" id="age">
                             </div>
                         </div>
                         <div class="form-group">
@@ -388,6 +386,63 @@
             },1000);
         }
         console.log(new Date,i);*/
+
+        /*(function func(){
+            var a = b = 3;
+        });
+        console.log(typeof(a));
+        console.log(typeof(b));*/
+
+        /*var a= 1;
+        function func(){
+            console.log(a);
+            var a = "in function";
+        }
+        func();
+        console.log(a);*/
+
+        /*function func1(){
+            var n = 99;
+            nAdd = function() {
+                this.n +=1;
+                console.log(this.n);
+            };
+            function func2(){
+                console.log(n);
+            }
+            return func2;
+        }
+
+        var result = func1(); 
+        result(); //99;
+        nAdd(); // 由于nAdd是全局变量。故不是undefined。
+        result(); //99*/
+
+        /*var myObject = {
+            foo:"bar",
+            func:function(){
+                var self = this;
+                console.log(this.foo);//bar
+                console.log(self.foo);//bar
+                (function(){
+                    console.log(this.foo);//undefined
+                    console.log(self.foo);//bar 顺序很重要！！！！！！
+                })();
+            }
+        }
+        myObject.func();*/
+
+        var k=c=0;
+        function a(n){
+            return n?(n-1)*a(n-1):n;
+            console.log(123);
+            k++;c++;
+            if(c>10) return c;
+        }
+
+        console.log(a(5)); //0???????????????????????????
+        console.log(k); //0
+        console.log(c); //0
 
         var app = new Vue({
             el : "#LibraryList",

@@ -252,6 +252,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     color:#666;
 }
 
+.inputCheckbox {
+  padding-top: 5px;
+  padding-left: 0px;
+}
+
 /******backtofolder文件夹上一级*****/
 .gallery-backtofolder {
     margin-top: -29px;
@@ -1388,6 +1393,10 @@ figure:hover+span {
   text-decoration:none;
 }
 
+/*#divall-catch li:hover{
+  border: 1px solid red;
+}*/
+
 /*实时监控*/
 .onairRatio {
   position: absolute;
@@ -1410,4 +1419,13 @@ figure:hover+span {
 
 .editPictureList_fail {
   border:1px solid rgb(212, 0, 0);
+}
+
+.monitorNoStart {
+  background: #e8ebef;
+  width: 80px;
+  height: 15px;
+  border-radius: 10px;
+  margin: 5px;
+  margin-left: 15px !important;
 }

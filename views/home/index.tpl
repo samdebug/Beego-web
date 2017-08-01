@@ -155,7 +155,7 @@
     <a href="{{urlfor "ManagerController.Index"}}" class="item">实时监控</a>
     <a href="{{urlfor "LibController.Librarys" }}" class="item">目标库管理</a>
     <a href="{{urlfor "VideosController.Videos" }}" class="item">视频源管理</a>
-    <a href="{{urlfor "ManagerController.Books" }}" class="item">布控任务</a>
+    <a href="{{urlfor "MissionController.Missions" }}" class="item">布控任务</a>
     <a href="{{urlfor "CompareController.One2ManySearch" }}" class="item">人脸检索</a>
     <!--<a class="item">产品中心</a>
     <a class="item">解决方案</a>
@@ -177,7 +177,7 @@
   <a href="{{urlfor "ManagerController.Index"}}" class="item">实时监控</a>
   <a href="{{urlfor "LibController.Librarys" }}" class="item">目标库管理</a>
   <a href="{{urlfor "VideosController.Videos" }}" class="item">视频源管理</a>
-  <a href="{{urlfor "ManagerController.Books" }}" class="item">布控任务</a>
+  <a href="{{urlfor "MissionController.Missions" }}" class="item">布控任务</a>
   <a href="{{urlfor "CompareController.One2ManySearch" }}" class="item">人脸检索</a>
   <!--<a class="item">产品中心</a>
   <a class="item">解决方案</a>
@@ -200,7 +200,7 @@
         <a href="{{urlfor "ManagerController.Index"}}" class="item">实时监控</a>
         <a href="{{urlfor "LibController.Librarys" }}" class="item">目标库管理</a>
         <a href="{{urlfor "VideosController.Videos" }}" class="item">视频源管理</a>
-        <a href="{{urlfor "ManagerController.Books" }}" class="item">布控任务</a>
+        <a href="{{urlfor "MissionController.Missions" }}" class="item">布控任务</a>
         <a href="{{urlfor "CompareController.One2ManySearch" }}" class="item">人脸检索</a>
         <!--<a class="item">产品中心</a>
         <a class="item">解决方案</a>

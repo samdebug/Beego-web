@@ -147,7 +147,7 @@
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="book_name">属性告警<span class="error-message">*</span></label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-10" class="inputCheckbox">
                             <div class="col-sm-2">
                                 <label class="fancy-checkbox">
                                     <input type="checkbox">
@@ -178,9 +178,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="book_name">阈值<span class="error-message">*</span></label>
                         <div class="col-sm-10">
-                            <select name="role" class="form-control">
-                                <option value="1">1%</option>
-                                <option value="2">2%</option>
+                            <select name="role" class="form-control" id="threshold">
                             </select>
                         </div>
                     </div>
@@ -212,6 +210,12 @@
 <script src="{{cdnjs "/static/controllers/global.js"}}"></script>
 <script type="text/javascript">
     $(function () {
+        addOption();
+        function addOption () {
+            for (var i=1;i<=100;i++){
+                $("#threshold").append("<option value=" + i  + ">" + i + "%" + "</option>");
+            }           
+        }
         var app = new Vue({
             el : "#userList",
             data : {

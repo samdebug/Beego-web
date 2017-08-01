@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="{{cdncss "/static/bootstrap/css/bootstrap.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/font-awesome/css/font-awesome.min.css"}}" rel="stylesheet">
-    <link href="/static/css/main.css" rel="stylesheet">
+    <link href="{{cdncss "/static/css/main.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/vxgplayer/vxgplayer-1.8.33.min.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/new/global.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/linearicons/style.css"}}" rel="stylesheet">
@@ -27,7 +27,7 @@
                     <li class="active"><a href="{{urlfor "ManagerController.Index"}}" class="item"><i class="icon-left lnr lnr-camera-video" aria-hidden="true"></i> 实时监控</a> </li>
                     <li><a href="{{urlfor "LibController.Librarys" }}" class="item"><i class="icon-left lnr lnr-users" aria-hidden="true"></i> 目标库管理</a> </li>
                     <li><a href="{{urlfor "VideosController.Videos" }}" class="item"><i class="icon-left lnr lnr-camera" aria-hidden="true"></i> 视频源管理</a> </li>
-                    <li><a href="{{urlfor "ManagerController.Books" }}" class="item"><i class="icon-left lnr lnr-clock" aria-hidden="true"></i> 布控任务</a> </li>
+                    <li><a href="{{urlfor "MissionController.Missions" }}" class="item"><i class="icon-left lnr lnr-clock" aria-hidden="true"></i> 布控任务</a> </li>
                     <li><a href="{{urlfor "CompareController.One2ManySearch" }}" class="item"><i class="icon-left lnr lnr-magnifier" aria-hidden="true"></i> 人脸检索</a> </li>
 
                     <li><a href="javascript:;" class="item"><i class="icon-left lnr lnr-book" aria-hidden="true"></i> 历史记录</a> </li>
@@ -62,8 +62,8 @@
                             </div>
                             <div class="action">
                               <a class="action-btn">
-                                <button type="button" class="btn btn-danger btn-danger-pro btn-sm" @click="endTask()">结束任务</button>
-                                <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="startVXG()">开始任务</button>
+                                <button type="button" class="btn btn-danger btn-danger-pro btn-sm" @click="endTask()" v-if="progressMission">结束任务</button>
+                                <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="startVXG()" v-if="progressMission == false">开始任务</button>
                               </a>
                             </div>
                         </div>
@@ -82,27 +82,37 @@
                           <div class="title">
                               <span class="lnr lnr-picture"></span>实时抓拍</div>
                             <div class="action">
-                              <!--<a class="action-btn">
-                                <button type="button" class="btn btn-primary btn-primary-pro">更多</button>
-                              </a>-->
+                              <a class="action-btn">
+                                <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="moreCatchData()">更多</button>
+                              </a>
                             </div>
                         </div>
                         <div class="panel-body">
                           <div id="scroller-1" class="scroller">
-                            <div class="text-center" id="camera-error">
-                              <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" style="width:180px" alt="" />
-                              <p>无抓拍</p>
-                            </div>
-                            <ul id="divall-catch" style="display:none">
+                            <template v-if="showSvg">
+                              <ul id="divall-catch">
                                 <div class="alldom">  
                                   <li v-for="(item,index) in catchList">
                                       <a href="javascript:;">
-                                          <img :src="item.url">
-                                          <p class="folder-p">${item.detail}</p>
+                                          <img src="/static/img/user-catch.svg" alt="" />
+                                          <p class="folder-p monitorNoStart"></p>
                                       </a>
                                   </li>
                                 </div>
-                            </ul>
+                              </ul> 
+                            </template>
+                            <template v-else>
+                              <ul id="divall-catch">
+                                  <div class="alldom">  
+                                    <li v-for="(item,index) in catchList">
+                                        <a href="javascript:;">
+                                            <img :src="item.url" alt=""/>
+                                            <p class="folder-p">${item.detail}</p>
+                                        </a>
+                                    </li>
+                                  </div>
+                              </ul>
+                            </template> 
                         </div>
                       </div>
                       </div>
@@ -115,14 +125,35 @@
                         <div class="title">
                           <span class="lnr lnr-eye"></span>发现目标</div>
                         <div class="action">
-                            <!--<a class="action-btn">
-                                <button type="button" class="btn btn-primary btn-primary-pro">更多</button>
-                              </a>-->
+                            <a class="action-btn">
+                              <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="moreAlertData()">更多</button>
+                            </a>
                         </div>
                       </div>
                       <div class="panel-body">
                         <div id="scroller" class="scroller">
-                          <div style="display:none" id="alertBoxs">
+                          <template v-if="showSvg">
+                            <div class="alert-box alert-default" v-for="(item,index) in alertList">
+                              <div class="alert-heading">
+                              </div>
+                              <div class="alert-body">
+                                <div class="alert-box-inside">
+                                  <div class="compare col-lg-7">
+                                    <img class="pic-size" src="/static/img/user-catch.svg" />
+                                    <!--<p class="onairRatio monitorNoStart"></p>-->
+                                    <img class="pic-size" src="/static/img/user-target.svg" />
+                                  </div>
+                                  <div class="info col-lg-5">
+                                    <div class="monitorNoStart"><span></span></div>
+                                    <div class="monitorNoStart"><span></span></div>
+                                    <div class="monitorNoStart"><span></span></div>
+                                    <div class="monitorNoStart"><span></span></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </template>
+                          <template v-else>
                             <div class="alert-box alert-default" v-for="(item,index) in alertList">
                               <div class="alert-heading">
                                 <div class="title">
@@ -146,7 +177,7 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </template>
                         </div><!--/.row-->
                       </div>
                     </div>  <!--/.main-->
@@ -173,8 +204,10 @@
         var app = new Vue({
             el : "#monitorList",
             data : {  
-                catchList : [],
-                alertList : []
+                catchList : [{},{},{},{},{}],
+                alertList : [{},{},{},{},{}],
+                showSvg:true,
+                progressMission:false
             },
             delimiters : ['${','}'],
             methods : {
@@ -218,6 +251,7 @@
                     });
                     $("#dynamicallyPlayers").show();
                     $("#no-video-source-video").hide();
+                    $this.progressMission = true;
                 },
                 endTask: function() {
                   console.log(123);
@@ -253,6 +287,7 @@
                       var data = JSON.parse(e.data);
                       console.log(data);
                       $('#taskId').attr("disabled","disabled");
+                      $this.showSvg = false;
                       $this.handleCatchFace(data);
                       $this.handleAlertTarget(data);
                     }
@@ -274,8 +309,6 @@
                     }
                 },
                 handleAlertTarget: function(data){
-                    //$("#divall-catch").show();
-                    //$("#camera-error").hide();
                     var $this = this;
                     var alertBox = [];
                     for (var i=0;i<data.length;i++) {
@@ -286,7 +319,6 @@
                         alertBox.push(list);
                     }
                     $this.alertList = alertBox;
-                    $("#alertBoxs").show();
                 },
                 handleCatchFace: function(data){
                     var $this = this;
@@ -305,8 +337,12 @@
                       catchBox.push(list);
                     }
                     $this.catchList = catchBox;
-                    $("#divall-catch").show();
-                    $("#camera-error").hide();
+                },
+                moreAlertData:function (){
+                  return;
+                },
+                moreCatchData: function () {
+                  return;
                 },
                 checkVxg: function() {
                     var vxg = $("#dynamicallyPlayers").find(".vxgplayer");
@@ -318,22 +354,11 @@
                 }
             }
         });
-
         $('.panel').attr('style',"border: 1px solid #e6e9f0 !important;");
-        
-        //滚动体
-        $('#scroller-1').slimScroll({
-            height: '150px'
-        });
-
-        $('#scroller').slimScroll({
-            height: '645px'
-        });
-
-        //样式
-        //$('#header-container').removeClass('container');
-        //$('#header-container').addClass('container-fluid');
+        $('#scroller-1').slimScroll({height: '150px'});
+        $('#scroller').slimScroll({height: '645px'});
       
+        /*usb摄像头*/
         /*var sayCheese = new SayCheese('#webcam', { audio: false });
         sayCheese.on('start', function() {
           console.log("start cam");
