@@ -53,20 +53,20 @@
                         <div class="row">
                           <div class="col-lg-12">
                             <div class="panel panel-default">
-                              <div class="panel-heading">
+                              <!--<div class="panel-heading">
                                 <!--<div class="title">
-                                  <span class="glyphicon glyphicon-user"></span>目标库管理</div>-->
+                                  <span class="glyphicon glyphicon-user"></span>目标库管理</div>
                                 <div class="action">
-                                  <!--<a href="{{urlfor "BookController.Index"}}" class="btn btn-primary btn-sm pull-right" style="margin-left:5px;" v-if="showCreateBtn">新建目标</a>-->
-                                  <button type="button" data-toggle="modal" data-target="#addTargetDialogModal" class="btn btn-primary btn-sm pull-right" style="margin-left:5px;" v-if="showCreateBtn" >新建目标</button>
-                                  <button type="button" data-toggle="modal" data-target="#addLibraryDialogModal" class="btn btn-primary btn-sm pull-right" v-if="showCreateBtn==false">创建目标库</button>
+                                  <!--<a href="{{urlfor "BookController.Index"}}" class="btn btn-primary btn-sm pull-right" style="margin-left:5px;" v-if="showCreateBtn">新建目标</a>
                                 </div>
-                              </div>
+                              </div>-->
                               <div class="panel-body tabs">
                                 <ul class="nav nav-pills" id="libTabs">
                                   <li class="active" @click="tableclick()"><a href="#table" data-toggle="tab"><span class="fa fa-table"></span></a></li>
                                   <li class="" @click="galleryclick()"><a href="#gallery" data-toggle="tab"><span class="fa fa-folder-o"></span></a></li>
                                   <li class=""><a href="javascript:;" class="backtofolder" style="display:none;" id="backtofolder" @click="backtofolder()">返回上一级</a></li>
+                                  <li style="float:right;display:none" id="createTargetBtn"><button type="button" data-toggle="modal" data-target="#addTargetDialogModal" class="btn btn-primary btn-sm pull-right">新建目标</button>
+                                  <li style="float:right;"><button type="button" data-toggle="modal" data-target="#addLibraryDialogModal" class="btn btn-primary btn-sm pull-right" v-if="showCreateBtn==false">创建目标库</button></li>
                                 </ul>
                                 
                                 <div class="tab-content">
@@ -112,61 +112,63 @@
                                         </template>
                                     </div>
                                     <div class="tab-pane fade" id="gallery">
-                                        <template v-if="lists.length <= 0">
-                                            <div class="text-center no-resources">
-                                                <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" alt="" />
-                                                <p>暂无数据</p>
-                                            </div>
-                                        </template>
-                                        <template v-else>
-                                            <div class="alldom">
-                                                <template v-if="show_targets">
-                                                    <!--<p class="targetNum">共有${targetNum}个目标</p>-->
-                                                    <template v-if="targets.length <=0">
-                                                        <div class="text-center no-resources">
-                                                            <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" alt="" />
-                                                            <p>暂无目标</p>
-                                                        </div>
-                                                    </template>
-                                                    <template v-else>
-                                                        <ul id="divall-pic">
-                                                            <li v-for="item in targets">
-                                                                <div v-on:mouseenter="hover(item.id)" v-on:mouseleave="hoverout(item.id)">
-                                                                    <div class="delete_bar" :id="'target' + item.id">
-                                                                        <div style="padding:5px;">
-                                                                            <span :data-id="item.id" class="file_del fa fa-times" title="删除" data-target="#deleteTargetModal" data-toggle="modal"></span>
+                                        <div id="roll-gallery" class="scroller">
+                                            <template v-if="lists.length <= 0">
+                                                <div class="text-center no-resources">
+                                                    <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" alt="" />
+                                                    <p>暂无数据</p>
+                                                </div>
+                                            </template>
+                                            <template v-else>
+                                                <div class="alldom">
+                                                    <template v-if="show_targets">
+                                                        <template v-if="targets.length <=0">
+                                                            <div class="text-center no-resources">
+                                                                <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" alt="" />
+                                                                <p>暂无目标</p>
+                                                            </div>
+                                                        </template>
+                                                        <template v-else>
+                                                            <ul id="divall-pic">
+                                                                <li v-for="item in targets">
+                                                                    <div v-on:mouseenter="hover(item.id)" v-on:mouseleave="hoverout(item.id)">
+                                                                        <div class="delete_bar" :id="'target' + item.id">
+                                                                            <div style="padding:5px;">
+                                                                                <span :data-id="item.id" class="file_del fa fa-times" title="删除" data-target="#deleteTargetModal" data-toggle="modal"></span>
+                                                                            </div>
                                                                         </div>
+                                                                        <a @click="editTarget(item.id)" href="javascript:;">
+                                                                            <img :src="item.url" alt="">
+                                                                            <p class="folder-p">${item.name}</p>
+                                                                        </a>
                                                                     </div>
-                                                                    <a @click="editTarget(item.id)" href="javascript:;">
-                                                                        <img :src="item.url" alt="">
-                                                                        <p class="folder-p">${item.name}</p>
-                                                                    </a>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </template>
-                                                </template>
-                                                <template v-else>
-                                                    <template v-if="lists.length <=0">
-                                                        <div class="text-center no-resources">
-                                                            <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" alt="" />
-                                                            <p>暂无数据</p>
-                                                        </div>
+                                                                </li>
+                                                            </ul>
+                                                        </template>
                                                     </template>
                                                     <template v-else>
-                                                        <ul id="divall">
-                                                            {{range $index,$item := .Libs}}
-                                                            <a href="javascript:;">
-                                                                <li v-on:click="getTarget({{$item.Id}},'{{$item.Name}}')">
-                                                                    <p class="folder-p">{{$item.Name}}</p>
-                                                                </li>
-                                                            </a>
-                                                            {{end}}
-                                                        </ul> 
+                                                        <template v-if="lists.length <=0">
+                                                            <div class="text-center no-resources">
+                                                                <img src="https://qiniu.staticfile.org/static/images/no-resources.4a57f9be.png" alt="" />
+                                                                <p>暂无数据</p>
+                                                            </div>
+                                                        </template>
+                                                        <template v-else>
+                                                            <!--<span>${totalLibrary}</span>-->
+                                                            <ul id="divall">
+                                                                {{range $index,$item := .Libs}}
+                                                                <a href="javascript:;">
+                                                                    <li v-on:click="getTarget({{$item.Id}},'{{$item.Name}}')">
+                                                                        <p class="folder-p">{{$item.Name}}</p>
+                                                                    </li>
+                                                                </a>
+                                                                {{end}}
+                                                            </ul> 
+                                                        </template>
                                                     </template>
-                                                </template>
-                                            </div>
-                                        </template>
+                                                </div>
+                                            </template>
+                                        </div>
                                     </div>
                                   </div>
                               </div>
@@ -365,6 +367,7 @@
 </div>
 
 <script src="{{cdnjs "/static/jquery/2.1.1/jquery.js"}}"></script>
+<script src="{{cdnjs "/static/jquery-slimscroll/jquery.slimscroll.min.js"}}"></script>
 <script src="{{cdnjs "/static/bootstrap/js/bootstrap.min.js"}}"></script>
 <script src="{{cdnjs "/static/datatables/jquery.dataTables.min.js"}}"></script>
 <script src="{{cdnjs "/static/datatables/dataTables.bootstrap.min.js"}}"></script>
@@ -432,7 +435,7 @@
         }
         myObject.func();*/
 
-        var k=c=0;
+        /*var k=c=0;
         function a(n){
             return n?(n-1)*a(n-1):n;
             console.log(123);
@@ -442,18 +445,49 @@
 
         console.log(a(5)); //0???????????????????????????
         console.log(k); //0
-        console.log(c); //0
+        console.log(c); //0*/
+
+        /*父子组件之间的传值*/
+        /*Vue.component('simple-counter', {
+          template: '<button v-on:click="counter += 1">${counter}</button>',
+          data: function () {
+            return {
+                counter: 0 
+            }
+          },
+          method
+        })
+
+        Vue.component('child', {
+          props: ['message'],
+          template: '<span v-text="message"></span>'
+        }) 
+        Vue.component('button-counter', {
+          template: '<button v-on:click="incrementCounter"></button>',
+          data: function () {
+            return {
+              counter: 0
+            }
+          },
+          methods: {
+            incrementCounter: function () {
+              this.counter += 1
+              this.$emit('increment')
+            }
+          },
+        })*/
 
         var app = new Vue({
             el : "#LibraryList",
-            data : {  
+            data : {
                 lists : {{.Results}},            
                 show_targets:false,
                 showCreateBtn:false,
                 libName:"",
                 libId:"",
                 targets: [],
-                targetNum:0
+                targetNum:0,
+                totalLibrary: '共' + {{.Results}}.length + '个目标',
             },
             delimiters : ['${','}'],
             methods : {
@@ -469,6 +503,7 @@
                     var $this = this;
                     $this.show_targets = true;
                     $this.showCreateBtn = true;
+                    $("#createTargetBtn").show();
                     $("#backtofolder").show();
                     $this.libName = name;
                     $this.libId = id;
@@ -505,6 +540,7 @@
                     $this.libName = "";
                     $this.libId = "";
                     $("#backtofolder").hide();
+                    $("#createTargetBtn").hide();
                     $("#libName").hide();
                     $("#createId").val("");
                 },
@@ -609,9 +645,12 @@
         $("#deleteTargetForm").ajaxForm({
             success : function (res) {
                 if(res.errcode === 0){
-                    //window.location = "{{urlfor "LibController.Librarys"}}";
-                    $('#deleteTargetModal').modal("hide");
-                    app.getTarget(app.libId,app.libName);
+                    localStorage.setItem("LibraryId",app.libId);
+                    localStorage.setItem("LibraryName",app.libName);
+                    localStorage.setItem("LibStatus",true);
+                    window.location = "{{urlfor "LibController.Librarys"}}";
+                    //$('#deleteTargetModal').modal("hide");
+                    //app.getTarget(app.libId,app.libName);
                 }else{
                     //showError(res.message,"#form-error-message2");
                     toastr['warning'](res.message);
@@ -631,7 +670,7 @@
                     toastr['warning']('身份证不能为空');
                     return false;
                 }
-                if ($(".upload_append_list").length = 0) {
+                if ($(".upload_append_list").length == 0) {
                     toastr['warning']('请选择照片');
                     return false;   
                 }
@@ -667,6 +706,7 @@
             });
         });
         
+        $('#roll-gallery').slimScroll({height: '550px'});
         /*$(".thumbnail").hover(function(){
             $(".hover-edit").show();
         },function(){

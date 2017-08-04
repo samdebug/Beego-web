@@ -2,7 +2,7 @@ $(function(){
     var ul = document.getElementById("sidebar");
     var list = ul.getElementsByTagName("li");  
 
-    for(var j=0;j<list.length;j++){  
+    /*for(var j=0;j<list.length;j++){  
         list[j].onclick = (function(num){  
             return function(){  
                 if ( num == 5 || num == 6) {
@@ -10,7 +10,14 @@ $(function(){
                 } 
             };  
         })(j);  
-    }  
+    }*/ 
+
+    /*事件委托*/
+    var ul = document.getElementById("sidebar");
+    ul.addEventListener('click',function(){
+        console.log(123);
+    })
+
 
     /*$('#sidebar li a').click(function(){
         /*console.log($(this).context.innerText);

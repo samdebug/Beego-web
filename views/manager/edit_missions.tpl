@@ -36,7 +36,7 @@
                     <div class="box-head">
                         <div class="row">
                             <ol class="breadcrumb">
-                                <li><a href="{{urlfor "VideosController.Videos" }}">
+                                <li><a href="{{urlfor "MissionController.Missions" }}">
                                     <span class="lnr lnr-users"></span>
                                     <strong>布控任务</strong>
                                 </a></li>
@@ -59,7 +59,7 @@
                             <label class="col-sm-2 control-label" for="lib"><span class="error-message">*</span>目标库</label>
                             <div class="col-sm-10">
                                 <select name="lib" class="form-control" id="lib">
-                                    <option value="none">请选择目标库</option>
+                                    <option value={{.Mission.LibId}}>{{.Mission.Lib}}</option>
                                     {{range $index,$item := .Libs}}
                                         <option value={{$item.Id}}>{{$item.Name}}</option>
                                     {{end}}
@@ -82,7 +82,7 @@
                             <label class="col-sm-2 control-label" for="video"><span class="error-message">*</span>视频源</label>
                             <div class="col-sm-10">
                                 <select name="video" class="form-control" id="video">
-                                    <option value="none">请选择视频源</option>
+                                    <option value={{.Mission.VideoId}}>{{.Mission.Video}}</option>
                                     {{range $index,$item := .Videos}}
                                         <option value={{$item.Id}}>{{$item.Name}}</option>
                                     {{end}}
@@ -92,12 +92,13 @@
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="book_name"><span class="error-message">*</span>阈值</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-7">
                                 <select name="threshold" class="form-control" id="threshold">
+                                    <option value="{{.Mission.Threshold}}">{{.Mission.Threshold}}%</option>
                                 </select>
                             </div>
                         </div>
-
+<!--                       
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="book_name">属性告警</label>
                             <div class="col-sm-10">
@@ -127,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-
+-->
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="description">备注</label>
                             <div class="col-sm-10">

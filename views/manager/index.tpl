@@ -80,7 +80,7 @@
                       <div class="panel catch">
                         <div class="panel-heading">
                           <div class="title">
-                              <span class="lnr lnr-picture"></span>实时抓拍</div>
+                              <span class="fa fa-search"></span>实时抓拍</div>
                             <div class="action">
                               <a class="action-btn">
                                 <button type="button" class="btn btn-primary btn-primary-pro btn-sm" @click="moreCatchData()">更多</button>
@@ -254,7 +254,7 @@
                     $this.progressMission = true;
                 },
                 endTask: function() {
-                  console.log(123);
+                  window.location = "{{urlfor "ManagerController.Index"}}";
                 },
                 resizeWindows: function () {
                     var ratio = 480/640;

@@ -257,6 +257,18 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   padding-left: 0px;
 }
 
+.has-error .form-control:focus {
+    border-color: #C44443;
+    /* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483; */
+    /* box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483; */
+}
+
+.has-error .form-control {
+    border-color: #C44443;
+    /* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+    /* box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+}
+
 /******backtofolder文件夹上一级*****/
 .gallery-backtofolder {
     margin-top: -29px;

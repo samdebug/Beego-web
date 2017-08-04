@@ -67,7 +67,6 @@
                                                 <th>有效时间</th>
                                                 <th>阈值</th>
                                                 <th>发现目标数</th>
-                                                <th>目标库</th>
                                                 <th>描述</th>
                                                 <th>操作</th>
                                             </tr>
@@ -75,15 +74,14 @@
                                             <tbody>
                                             {{range $index,$item := .Missions}}
                                             <tr>
-                                                <td>{{$item.Id}}</td>
+                                                <td>{{$index}}</td>
                                                 <td>{{$item.Name}}</td>
-                                                <td>{{$item.Threshold}}</td>
-                                                <td>{{$item.Threshold}}</td>
-                                                <td>{{$item.LibId}}</td>
+                                                <td>长期有效</td>
+                                                <td>{{$item.Threshold}}%</td>
                                                 <td>{{$item.LibId}}</td>
                                                 <td>{{$item.Message}}</td>
                                                 <td>
-                                                    <a :href="'{{urlfor "MissionController.EditMission" ":id" $item.Id}}'" class="btn btn-sm btn-primary" >编辑</a>
+                                                    <a :href="'{{urlfor "MissionController.UpdateMission" ":id" $item.Id}}'" class="btn btn-sm btn-primary" >编辑</a>
                                                     <button type="button" data-method="delete" class="btn btn-danger btn-sm" data-id="{{$item.Id}}" data-target="#deleteMissionModal" data-toggle="modal" data-loading-text="删除中...">删除</button>
                                                     <!--<button type="button" class="btn btn-danger btn-sm">开始任务</button>
                                                     <button type="button" class="btn btn-danger btn-sm">中止任务</button>-->
@@ -316,6 +314,18 @@
             var id = $(e.relatedTarget).data('id');
             $('#delId').val(id)
         });
+
+        $("#deleteMissionForm").ajaxForm({
+            success : function (res) {
+                if(res.errcode === 0){
+                    window.location = "{{urlfor "MissionController.Missions"}}";
+                }else{
+                    console.log(res.message)
+                    toastr['warning'](res.message);
+                }
+            }
+        });
+
 
     });
 </script>

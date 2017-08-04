@@ -162,6 +162,7 @@
 			 */
 			this.funFilterEligibleFile = function(files){
 				var arrFiles = [];  // 替换的文件数组
+				//console.log(123);
 				for (var i = 0, file; file = files[i]; i++) {
 					if (file.size >= 51200000) {
 						alert('您这个"'+ file.name +'"文件大小过大');	
