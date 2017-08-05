@@ -14,10 +14,11 @@ $(function(){
 
     /*事件委托*/
     var ul = document.getElementById("sidebar");
-    ul.addEventListener('click',function(){
-        console.log(123);
+    ul.addEventListener('click',function(e){
+        if (e.target.tagName.toLowerCase() == 'li'){
+            console.log(e); 
+        }
     })
-
 
     /*$('#sidebar li a').click(function(){
         /*console.log($(this).context.innerText);

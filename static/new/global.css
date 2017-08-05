@@ -270,7 +270,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 
 /******backtofolder文件夹上一级*****/
-.gallery-backtofolder {
+.gallery-backtofolder { 
     margin-top: -29px;
     padding-bottom: 30px;
     cursor: pointer;

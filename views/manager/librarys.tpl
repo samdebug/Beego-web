@@ -14,11 +14,11 @@
     <link href="{{cdncss "/static/linearicons/style.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/toastr/toastr.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/MultiUpload/control/css/Upload.css"}}" type="text/css" rel="stylesheet" >
-    <link href="https://cdn.bootcss.com/datatables/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/datatabsles/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
-    <div class="manual-reader">
+    <div class="manual-reader"> 
         {{template "widgets/header.tpl" .}}
         <div class="container-fluid manual-body">
             <div class="row">
