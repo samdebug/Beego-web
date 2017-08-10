@@ -15,10 +15,17 @@ $(function(){
     /*事件委托*/
     var ul = document.getElementById("sidebar");
     ul.addEventListener('click',function(e){
-        if (e.target.tagName.toLowerCase() == 'li'){
-            console.log(e); 
+        if (e.target.innerText == ' 历史记录' || e.target.innerText == ' 数据统计'){
+            layer.msg("正在建设中,敬请期待....");
         }
     })
+   
+    /*$("#sidebar").on('click',function(e){
+        console.log(e);
+        if (e.currentTarget.children.toLowerCase() == 'li'){
+            console.log(e); 
+        }
+    })*/
 
     /*$('#sidebar li a').click(function(){
         /*console.log($(this).context.innerText);

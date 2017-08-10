@@ -14,7 +14,8 @@
     <link href="{{cdncss "/static/linearicons/style.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/toastr/toastr.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/MultiUpload/control/css/Upload.css"}}" type="text/css" rel="stylesheet" >
-    <link href="https://cdn.bootcss.com/datatabsles/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="{{cdncss "/static/iview/iview.css"}}" type="text/css" rel="stylesheet" >
+    <link href="{{cdncss "/static/datatables/dataTables.bootstrap.min.css"}}" type="text/css" rel="stylesheet" >
 
 </head>
 <body>
@@ -373,6 +374,7 @@
 <script src="{{cdnjs "/static/datatables/dataTables.bootstrap.min.js"}}"></script>
 <script src="{{cdnjs "/static/js/jquery.form.js"}}" type="text/javascript"></script>
 <script src="{{cdnjs "/static/vuejs/vue.min.js"}}"></script>
+<script src="{{cdnjs "/static/iview/iview.min.js"}}"></script>
 <script src="{{cdnjs "/static/layer/layer.js"}}" type="text/javascript"></script>
 <script src="{{cdnjs "/static/controllers/global.js"}}"></script>
 <script src="{{cdnjs "/static/toastr/toastr.js"}}" type="text/javascript"></script>
@@ -564,7 +566,7 @@
         /*设置localstorage跳转回目录*/
         var LibraryId = localStorage.getItem("LibraryId");
         var LibraryName = localStorage.getItem("LibraryName");
-        var LibStatus = localStorage.getItem("LibStatus");
+        var LibStatus = localStorage.getItem("LibStatus");  
         if(LibraryId != null && LibraryName !=null && LibStatus){
             app.getTarget(LibraryId,LibraryName);
             localStorage.removeItem("LibraryId");

@@ -15,6 +15,7 @@
     <link href="{{cdncss "/static/new/global.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/linearicons/style.css"}}" rel="stylesheet">
     <link href="{{cdncss "/static/toastr/toastr.css"}}" rel="stylesheet">
+    <link href="{{cdncss "/static/iview/iview.css"}}" type="text/css" rel="stylesheet" >
 
 </head>
 <body>
@@ -196,6 +197,7 @@
 <script src="{{cdnjs "/static/controllers/resize.js"}}"></script>
 <script src="{{cdnjs "/static/controllers/global.js"}}"></script>
 <script src="{{cdnjs "/static/vuejs/vue.min.js"}}"></script>
+<script src="{{cdnjs "/static/iview/iview.min.js"}}"></script>
 <script src="{{cdnjs "/static/toastr/toastr.js"}}" type="text/javascript"></script>
 <script src="{{cdnjs "/static/layer/layer.js"}}" type="text/javascript"></script>
 
