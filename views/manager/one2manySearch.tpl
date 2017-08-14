@@ -14,6 +14,8 @@
   <link href="{{cdncss "/static/css/main.css"}}" rel="stylesheet">
   <link href="{{cdncss "/static/new/global.css"}}" rel="stylesheet">
   <link href="{{cdncss "/static/linearicons/style.css"}}" rel="stylesheet">
+  <<link href="{{cdncss "/static/iview/iview.css"}}" type="text/css" rel="stylesheet" >
+
 </head>
 
 <body>
@@ -169,7 +171,22 @@
                                           </form>
 
                                           <div id="guide">
-                                            <img src="/static/searchface/img/hints-edit.png">
+                                            <!--<img src="/static/searchface/img/hints-edit.png">-->
+                                            <template>
+                                              <Timeline>
+                                                  <Timeline-item color="blue">
+                                                      <Icon type="information-circled" slot="dot"></Icon>
+                                                      <span>提示</span>
+                                                  </Timeline-item>
+                                                  <Timeline-item>上传本地照片</Timeline-item>
+                                                  <Timeline-item>选择目标库</Timeline-item>
+                                                  <Timeline-item>点击开始检索按钮</Timeline-item>
+                                                  <Timeline-item color="blue">
+                                                      <Icon type="checkmark-circled" slot="dot"></Icon>
+                                                      <span>即可获得检索结果</span>
+                                                  </Timeline-item>
+                                              </Timeline>
+                                            </template>
                                           </div>
 
                                           <div id="matchResults">
@@ -317,7 +334,8 @@
   <script src="{{cdnjs "/static/controllers/global.js"}}"></script>
   <script src="{{cdnjs "/static/js/jquery.form.js"}}" type="text/javascript"></script>
   <script src="{{cdnjs "/static/layer/layer.js"}}" type="text/javascript"></script>
-  <!--<script src="/static/vuejs/vue.min.js"></script>-->
+  <script src="{{cdnjs "/static/vuejs/vue.min.js"}}"></script>
+  <script src="{{cdnjs "/static/iview/iview.min.js"}}"></script>
   
   <script src="{{cdnjs "/static/searchface/js/global.js"}}" type="text/javascript"></script>
   <script src="{{cdnjs "/static/searchface/js/match.data.js"}}" type="text/javascript"></script>
@@ -332,7 +350,12 @@
         }
         });
     $(function () {
-        
+        var app = new Vue({
+            el : "#guide",
+            data : {},
+            delimiters : ['${','}'],
+            methods : {}
+        });
         /*$("#startMatchButton").click(function(){
             $("#upload").each(function(){
                 var src = $(this).find("img").attr("src");

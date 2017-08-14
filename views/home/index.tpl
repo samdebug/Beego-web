@@ -25,6 +25,7 @@
   <link rel="stylesheet" type="text/css" href="/static/dist/components/icon.css">
   <link rel="stylesheet" type="text/css" href="/static/dist/components/sidebar.css">
   <link rel="stylesheet" type="text/css" href="/static/dist/components/transition.css">
+  <link href="{{cdncss "/static/iview/iview.css"}}" type="text/css" rel="stylesheet" >
 
   <style type="text/css">
 
@@ -115,38 +116,8 @@
 
 
   </style>
-
-  <script src="/static/dist/jquery.min.js"></script>
-  <script src="/static/dist/components/visibility.js"></script>
-  <script src="/static/dist/components/sidebar.js"></script>
-  <script src="/static/dist/components/transition.js"></script>
-  <script>
-  $(document)
-    .ready(function() {
-
-      // fix menu when passed
-      $('.masthead')
-        .visibility({
-          once: false,
-          onBottomPassed: function() {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function() {
-            $('.fixed.menu').transition('fade out');
-          }
-        })
-      ;
-
-      // create sidebar and attach to menu open
-      $('.ui.sidebar')
-        .sidebar('attach events', '.toc.item')
-      ;
-
-    })
-  ;
-  </script>
 </head>
-<body>
+<body id="indexList">
 
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu">
@@ -304,7 +275,42 @@
     </div>
   </div>
 </div>
+  <script src="/static/dist/jquery.min.js"></script>
+  <script src="/static/dist/components/visibility.js"></script>
+  <script src="/static/dist/components/sidebar.js"></script>
+  <script src="/static/dist/components/transition.js"></script>
+  <script src="{{cdnjs "/static/vuejs/vue.min.js"}}"></script>
+  <script src="{{cdnjs "/static/iview/iview.min.js"}}"></script>
 
+  <script>
+  $(document)
+    .ready(function() {
+      var app = new Vue({
+            el : "#indexList",
+            data : {},
+            delimiters : ['${','}'],
+            methods : {}
+        });
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+    })
+  ;
+  </script>
 </body>
-
 </html>
