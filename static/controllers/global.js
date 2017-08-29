@@ -1,3 +1,5 @@
+import sjld from './component/index.js'
+Vue.use(sjld);
 $(function(){
     var ul = document.getElementById("sidebar");
     var list = ul.getElementsByTagName("li");  

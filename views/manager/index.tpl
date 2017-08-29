@@ -43,6 +43,8 @@
                     </div>
                 </div>
                 <div class="box-body manager">
+                    <sjld :citys="citys" :sheng="sheng" @change="change"></sjld>
+
                     <div class="col-md-7"  id="monitor">
                       <!-- TODO LIST -->
                       <div class="panel vxg-players">
@@ -203,16 +205,32 @@
 
 <script type="text/javascript">
     $(function () {
+        function add(a,b)  
+            {  
+                alert(a+b);  
+            }  
+            function sub(a,b)  
+            {  
+                alert(a-b);  
+            }  
+              
+            add.call(sub,3,1);
+
         var app = new Vue({
             el : "#monitorList",
             data : {  
                 catchList : [{},{},{},{},{}],
                 alertList : [{},{},{},{},{}],
                 showSvg:true,
-                progressMission:false
+                progressMission:false,
+                citys:"",
+                sheng:""
             },
             delimiters : ['${','}'],
             methods : {
+                change:function(){
+                    console.log(123);
+                },
                 startVXG : function (index) {
                     var $this = this;
                     if (!$this.checkVxg()) {
