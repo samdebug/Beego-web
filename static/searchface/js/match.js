@@ -26,6 +26,7 @@
       force.init();
       filter.init();
     },
+    
     effectBinding: function(){
       /*
         上传图片和按钮的hover效果，另外还绑定了上传提交的事件

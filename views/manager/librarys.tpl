@@ -385,7 +385,25 @@
 
 <script type="text/javascript">
     $(function () {
-        setTimeout(function() {
+        var str ="caibaojian.com";
+        var arr = str.split("");
+        var obj = {};
+        var objArr = [];
+        for(var i=0,j; j=arr[i]; i++){
+        if(!obj[j])obj[j]=0;
+        objArr[++obj[j]]=j;
+        }
+        console.log(objArr[objArr.length-1]+"=="+(objArr.length-1));
+        /*let str = "i have a dick"
+        str = str.replace(/\s/g,"_");
+
+        (function(){    
+            console.log(str);
+            var str;
+        })()
+
+        console.log(str);*/
+        /*setTimeout(function() {
             console.log(1);
         }, 0);
         new Promise(function executor(resolve) {
@@ -397,7 +415,7 @@
         }).then(function() {
           console.log(4);
         });
-        console.log(5);
+        console.log(5);*/
 
         /*for (var i=0;i<5;i++) {
             setTimeout(function(){

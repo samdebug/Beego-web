@@ -11,6 +11,8 @@ angular.module('faceApp', []).controller('faceCtrl', function($scope, $http) {
             height: '150px'
         });
 
+
+
         $('#scroller').slimScroll({
             height: '758px'
         });
